@@ -457,7 +457,7 @@ let sigD={};
 
 function doLogin(){
   const u=document.getElementById('loginUser').value.trim().toLowerCase(),p=document.getElementById('loginPass').value.trim();
-  if(u===CRED.user&&p===CRED.pass){document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='block';initApp()}
+  if(u===CRED.user&&p.toLowerCase()===CRED.pass.toLowerCase()){document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='block';initApp()}
   else document.getElementById('loginError').style.display='block';
 }
 document.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
