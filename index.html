@@ -456,8 +456,11 @@ const sv=()=>{localStorage.setItem('av_v',JSON.stringify(S.visits));localStorage
 let sigD={};
 
 function doLogin(){
-  const u=document.getElementById('loginUser').value.trim().toLowerCase(),p=document.getElementById('loginPass').value.trim();
-  if(u===CRED.user&&p.toLowerCase()===CRED.pass.toLowerCase()){document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='block';initApp()}
+  const u=document.getElementById('loginUser').value.trim();
+  const p=document.getElementById('loginPass').value.trim();
+  const uOk=u.toLowerCase()===CRED.user.toLowerCase();
+  const pOk=p===CRED.pass;
+  if(uOk&&pOk){document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='block';initApp()}
   else document.getElementById('loginError').style.display='block';
 }
 document.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
@@ -831,7 +834,4 @@ function restoreData(input){
   reader.readAsText(file);
 }
 
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
-</script>
-</body>
-</html>
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000
