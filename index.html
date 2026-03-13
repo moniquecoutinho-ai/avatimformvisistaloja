@@ -2,7 +2,11 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1A1410">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Avatim">
 <title>Avatim — Sistema de Gestão</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -188,7 +192,94 @@ canvas.sig-canvas{width:100%;height:100px;border:1px solid #DDD5CA;border-radius
 .report-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
 .report-item{font-size:11px;padding:6px 10px;background:var(--white);border-radius:7px;border:1px solid #EDE8E0}
 .report-item.ok{border-color:rgba(90,138,106,.3)}.report-item.nok{border-color:rgba(192,57,43,.3)}
-@media(max-width:768px){nav{padding:0 10px}.page{padding:12px}.stats-grid{grid-template-columns:1fr 1fr}.two-col,.form-row,.checklist-grid,.photo-area,.sig-container,.medals-showcase,.report-grid,.melhoria-grid{grid-template-columns:1fr}}
+
+/* ===== MOBILE OTIMIZADO ===== */
+@media(max-width:768px){
+  nav{padding:0 8px;height:56px}
+  .nav-logo{font-size:15px;letter-spacing:2px}
+  .nav-tabs{gap:1px}
+  .nav-tab{font-size:10px;padding:5px 7px}
+  .nav-user{gap:4px}
+  .nav-avatar{width:26px;height:26px;font-size:10px}
+  .btn-logout{font-size:10px;padding:4px 7px}
+
+  .page{padding:12px}
+  .page-title{font-size:20px}
+
+  .stats-grid{grid-template-columns:1fr 1fr;gap:8px}
+  .stat-card{padding:12px}
+  .stat-value{font-size:22px}
+
+  .two-col,.form-row,.checklist-grid,.photo-area,
+  .sig-container,.medals-showcase,.report-grid,.melhoria-grid{grid-template-columns:1fr}
+
+  .loja-tabs{gap:5px}
+  .loja-tab{padding:8px 12px;font-size:12px;border-radius:20px}
+  .loja-tab.active{font-weight:700}
+
+  .form-section{padding:16px}
+  .form-section-title{font-size:13px}
+
+  .form-group input,.form-group select,.form-group textarea{
+    font-size:16px !important; /* evita zoom automático no iOS */
+    padding:11px 13px
+  }
+
+  .check-item{padding:10px 12px;min-height:44px}
+  .check-label{font-size:12px}
+  .check-box{width:22px;height:22px;font-size:12px}
+
+  .atn-row{padding:10px 12px}
+  .atn-label{font-size:13px}
+  .atn-btn{padding:8px 13px;font-size:12px;min-height:36px}
+
+  .star-btn{font-size:28px}
+  .star-row{flex-direction:column;gap:8px;padding:12px 0}
+  .stars-wrap{justify-content:flex-start}
+
+  canvas.sig-canvas{height:120px}
+
+  .btn-submit{padding:16px;font-size:13px;min-height:52px}
+  .btn-sm{padding:8px 14px;font-size:12px;min-height:36px}
+  .btn-export{padding:8px 13px;font-size:12px;min-height:36px}
+
+  .visit-card{padding:12px 14px;gap:10px}
+  .visit-store{font-size:13px}
+  .visit-score-circle{width:42px;height:42px;font-size:13px}
+
+  .full-rank-item{padding:11px 14px;gap:8px}
+  .full-rank-score{font-size:16px}
+
+  .modal{padding:18px;border-radius:14px}
+
+  .form-progress{flex-wrap:wrap;gap:8px}
+  .score-display{font-size:18px}
+
+  .ranking-header{flex-direction:column;gap:8px}
+  .month-btn{padding:9px 16px;font-size:13px;min-height:40px}
+
+  /* PDI 30/60/90 em coluna no mobile */
+  #pdiContent [style*="grid-template-columns:repeat(3"]{
+    grid-template-columns:1fr !important
+  }
+}
+
+/* ===== TABLET ===== */
+@media(max-width:1024px) and (min-width:769px){
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .medals-showcase{grid-template-columns:repeat(2,1fr)}
+  .page{padding:18px}
+}
+
+/* ===== TOUCH — áreas clicáveis maiores ===== */
+@media(hover:none) and (pointer:coarse){
+  .check-item{min-height:48px}
+  .atn-btn{min-height:40px;padding:9px 14px}
+  .loja-tab{min-height:40px}
+  .btn-sm,.btn-export{min-height:40px}
+  .star-btn{font-size:32px;padding:4px}
+  .nav-tab{min-height:44px;display:flex;align-items:center}
+}
 </style>
 </head>
 <body>
@@ -377,6 +468,27 @@ canvas.sig-canvas{width:100%;height:100px;border:1px solid #DDD5CA;border-radius
           <div><div class="sig-label">Funcionária</div><canvas class="sig-canvas" id="sigFFn" width="400" height="100"></canvas><div class="sig-actions"><button class="btn-sm" onclick="clearSig('sigFFn')">Limpar</button></div></div>
         </div>
       </div>
+      <div class="form-section">
+        <div class="form-section-title">📝 Contrato de Acordos</div>
+        <div class="form-group">
+          <label>Acordos combinados nesta avaliação</label>
+          <textarea id="fFAcordos" placeholder="Descreva os acordos estabelecidos entre avaliador(a) e funcionária, como metas, comportamentos esperados, prazos e compromissos assumidos na conversa..." style="min-height:120px"></textarea>
+        </div>
+        <div style="margin-top:8px;padding:10px 14px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:9px;font-size:11px;color:var(--mid)">
+          ✍️ Ao assinar abaixo, a funcionária confirma que leu, entendeu e concorda com os acordos acima.
+        </div>
+        <div class="sig-container" style="margin-top:12px">
+          <div><div class="sig-label">Avaliador(a) — Testemunha</div><canvas class="sig-canvas" id="sigAcAv" width="400" height="100"></canvas><div class="sig-actions"><button class="btn-sm" onclick="clearSig('sigAcAv')">Limpar</button></div></div>
+          <div><div class="sig-label">Funcionária — Ciente e de acordo</div><canvas class="sig-canvas" id="sigAcFn" width="400" height="100"></canvas><div class="sig-actions"><button class="btn-sm" onclick="clearSig('sigAcFn')">Limpar</button></div></div>
+        </div>
+      </div>
+      <div class="form-section" id="pdiSection">
+        <div class="form-section-title">🚀 PDI — Plano de Desenvolvimento Individual <span id="pdiLoadingBadge" style="font-size:10px;font-weight:400;color:var(--mid);margin-left:6px"></span></div>
+        <div id="pdiContent" style="font-size:13px;color:var(--mid);text-align:center;padding:20px">
+          Clique em "Gerar PDI" para criar um plano personalizado baseado nas notas desta avaliação.
+        </div>
+        <button id="btnGerarPDI" class="btn-submit" style="margin-top:12px;padding:12px;font-size:13px" onclick="gerarPDI()">✨ Gerar PDI</button>
+      </div>
       <button class="btn-submit" onclick="submitAval()">⭐ SALVAR AVALIAÇÃO ⭐</button>
     </div>
   </div>
@@ -418,6 +530,26 @@ canvas.sig-canvas{width:100%;height:100px;border:1px solid #DDD5CA;border-radius
     </div>
     <div class="full-ranking" id="fullRankingList"></div>
   </div>
+
+<div id="bottomNav" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--dark);border-top:1px solid rgba(201,168,76,.2);z-index:200;padding:6px 0 env(safe-area-inset-bottom)">
+  <div style="display:flex;justify-content:space-around;align-items:center">
+    <button onclick="showPage('dashboard')" id="bn0" style="background:none;border:none;color:var(--light);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;min-width:56px">
+      <span style="font-size:20px">📊</span><span style="font-size:9px">Dashboard</span>
+    </button>
+    <button onclick="showPage('nova-visita')" id="bn1" style="background:none;border:none;color:var(--light);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;min-width:56px">
+      <span style="font-size:20px">🏪</span><span style="font-size:9px">Visita</span>
+    </button>
+    <button onclick="showPage('avaliacao-func')" id="bn2" style="background:none;border:none;color:var(--light);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;min-width:56px">
+      <span style="font-size:20px">👩</span><span style="font-size:9px">Avaliar</span>
+    </button>
+    <button onclick="showPage('historico')" id="bn3" style="background:none;border:none;color:var(--light);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;min-width:56px">
+      <span style="font-size:20px">📋</span><span style="font-size:9px">Histórico</span>
+    </button>
+    <button onclick="showPage('ranking')" id="bn4" style="background:none;border:none;color:var(--light);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;min-width:56px">
+      <span style="font-size:20px">🏆</span><span style="font-size:9px">Ranking</span>
+    </button>
+  </div>
+</div>
 </div>
 
 <div class="modal-overlay" id="visitModal"><div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><div id="modalContent"></div></div></div>
@@ -439,7 +571,7 @@ const CHK={
 
 const ATN=[{id:'com',l:'Comunicação visual atualizada',p:8},{id:'abr',l:'Abordagem ativa e cordial',p:8},{id:'tec',l:'Conhecimento técnico dos produtos',p:8},{id:'val',l:'Foco em valor e benefícios',p:8},{id:'adi',l:'Produto adicional oferecido',p:6},{id:'fec',l:'Técnicas de fechamento aplicadas',p:6},{id:'wha',l:'Ação de venda via WhatsApp',p:5}];
 
-const FCAT={'💰 RESULTADOS DE VENDAS':['Atingimento de metas','Ticket médio','Conversão de clientes','Cross sell / Upsell','Conhecimento de produtos','Capacidade de recomendação'],'💎 ATENDIMENTO AO CLIENTE':['Cordialidade','Abordagem inicial','Escuta ativa','Experiência do cliente','Resolução de problemas','Pós-venda'],'🌟 COMPORTAMENTO PROFISSIONAL':['Responsabilidade','Comprometimento','Trabalho em equipe','Proatividade','Organização','Respeito às normas'],'⏰ ASSIDUIDADE':['Pontualidade','Cumprimento de horário','Frequência (faltas)','Compromisso com escala','Aviso antecipado de ausência'],'🏪 EXECUÇÃO DE LOJA':['Organização da loja','Reposição de produtos','Visual merchandising','Conhecimento de campanhas','Cumprimento de processos']};
+const FCAT={'💰 RESULTADOS DE VENDAS':['Atingimento de metas','Ticket médio','Conversão de clientes','Cross sell / Upsell','Conhecimento de produtos','Capacidade de recomendação'],'💎 ATENDIMENTO AO CLIENTE':['Cordialidade','Abordagem inicial','Escuta ativa','Experiência do cliente','Resolução de problemas','Pós-venda'],'🌟 COMPORTAMENTO PROFISSIONAL':['Responsabilidade','Comprometimento','Trabalho em equipe','Proatividade','Organização','Respeito às normas'],'⏰ ASSIDUIDADE':['Pontualidade','Frequência e presença','Aviso antecipado de ausência'],'🏪 EXECUÇÃO DE LOJA':['Organização da loja','Reposição de produtos','Visual merchandising','Conhecimento de campanhas','Cumprimento de processos']};
 
 const MEDALS=[{id:'bs',e:'🌸',t:'Boas Sensações',d:'Melhor atendimento ao cliente'},{id:'op',e:'✨',t:'Ouro Puro',d:'Maior pontuação geral de loja'},{id:'li',e:'🏆',t:'Loja Impecável',d:'Melhor limpeza e organização'},{id:'ve',e:'⭐',t:'Vendedora Estrela',d:'Melhor avaliação de funcionária'},{id:'mb',e:'🎯',t:'Bravura em Vendas',d:'Maior cumprimento de metas'},{id:'va',e:'🎨',t:'Arte da Vitrine',d:'Melhor apresentação visual'}];
 
@@ -456,24 +588,40 @@ const sv=()=>{localStorage.setItem('av_v',JSON.stringify(S.visits));localStorage
 let sigD={};
 
 function doLogin(){
-  const u=document.getElementById('loginUser').value.trim();
+  const u=document.getElementById('loginUser').value.trim().toLowerCase();
   const p=document.getElementById('loginPass').value.trim();
-  const uOk=u.toLowerCase()===CRED.user.toLowerCase();
-  const pOk=p===CRED.pass;
-  if(uOk&&pOk){document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='block';initApp()}
-  else document.getElementById('loginError').style.display='block';
+  if(u==='gmanjos' && p==='Avatim2026'){
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('app').style.display='block';
+    initApp();
+  } else {
+    document.getElementById('loginError').style.display='block';
+  }
 }
 document.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
 function doLogout(){document.getElementById('app').style.display='none';document.getElementById('loginScreen').style.display='flex';document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';document.getElementById('loginError').style.display='none'}
 
 function initApp(){
+  // Detectar mobile e mostrar bottom nav
+  const isMobile = window.innerWidth <= 768;
+  if(isMobile){
+    document.getElementById('bottomNav').style.display='block';
+    document.querySelector('nav .nav-tabs').style.display='none';
+    document.querySelectorAll('.page').forEach(p=>p.style.paddingBottom='80px');
+  }
+  window.addEventListener('resize',()=>{
+    const m=window.innerWidth<=768;
+    document.getElementById('bottomNav').style.display=m?'block':'none';
+    document.querySelector('nav .nav-tabs').style.display=m?'none':'flex';
+  });
+
   const t=new Date();
   document.getElementById('dashDate').textContent=t.toLocaleDateString('pt-BR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   const ds=t.toISOString().split('T')[0];
   document.getElementById('fData').value=ds;document.getElementById('fFD').value=ds;
   document.getElementById('monthDisplay').textContent=S.rMonth.toLocaleDateString('pt-BR',{month:'long',year:'numeric'}).replace(/^\w/,c=>c.toUpperCase());
   buildChk();buildAtn();buildFuncCrit();
-  ['sigAv','sigVn','sigFAv','sigFFn'].forEach(setupCanvas);
+  ['sigAv','sigVn','sigFAv','sigFFn','sigAcAv','sigAcFn'].forEach(setupCanvas);
   renderDash();renderHist();renderRank();
 }
 
@@ -607,12 +755,12 @@ function submitAval(){
   let t=0,cnt=0;const crit={};
   Object.entries(FCAT).forEach(([cat,items])=>{crit[cat]=[];items.forEach(item=>{const k=cat+'|'+item;const n=S.fstars[k]||0;t+=n;cnt++;crit[cat].push({l:item,n,c:S.fcomm[k]||''})})});
   const m=cnt*5,pct=Math.round((t/m)*100),cl=getClf(pct);
-  const aval={id:Date.now(),tipo:'avaliacao',loja,data,nome,cargo:document.getElementById('fFC').value,av:document.getElementById('fFA').value,periodo:document.getElementById('fFP').value,score:t,max:m,pct,clf:cl.l,crit,pm:{obj:document.getElementById('pmObj').value,acao:document.getElementById('pmAcao').value,prazo:document.getElementById('pmPrazo').value,status:document.getElementById('pmStatus').value},pos:document.getElementById('fFFpos').value,dev:document.getElementById('fFFdev').value,msg:document.getElementById('fFFmsg').value,sAv:sigD.sigFAv,sFn:sigD.sigFFn};
+  const aval={id:Date.now(),tipo:'avaliacao',loja,data,nome,cargo:document.getElementById('fFC').value,av:document.getElementById('fFA').value,periodo:document.getElementById('fFP').value,score:t,max:m,pct,clf:cl.l,crit,pm:{obj:document.getElementById('pmObj').value,acao:document.getElementById('pmAcao').value,prazo:document.getElementById('pmPrazo').value,status:document.getElementById('pmStatus').value},pos:document.getElementById('fFFpos').value,dev:document.getElementById('fFFdev').value,msg:document.getElementById('fFFmsg').value,sAv:sigD.sigFAv,sFn:sigD.sigFFn,acordos:document.getElementById('fFAcordos').value,sigAcAv:sigD.sigAcAv,sigAcFn:sigD.sigAcFn,pdi:window._pdiGerado||''};
   S.avals.unshift(aval);sv();resetAF();showPage('historico');renderDash();renderHist();renderRank();showToast('⭐ Avaliação salva!');
 }
 function resetAF(){
-  ['fFN','fFC','fFP','pmObj','pmAcao','pmPrazo','fFFpos','fFFdev','fFFmsg'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''});
-  document.getElementById('pmStatus').value='';buildFuncCrit();clearSig('sigFAv');clearSig('sigFFn');
+  ['fFN','fFC','fFP','pmObj','pmAcao','pmPrazo','fFFpos','fFFdev','fFFmsg','fFAcordos'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''});
+  document.getElementById('pmStatus').value='';buildFuncCrit();clearSig('sigFAv');clearSig('sigFFn');clearSig('sigAcAv');clearSig('sigAcFn');window._pdiGerado='';document.getElementById('pdiSection').style.display='none';
 }
 
 function renderDash(){
@@ -704,7 +852,9 @@ function openMod(id,tipo){
     if(a.pos)html+=`<div class="report-section"><h3>👍 Pontos Fortes</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(90,138,106,.08);border-radius:7px;border:1px solid rgba(90,138,106,.2)">${a.pos}</p></div>`;
     if(a.dev)html+=`<div class="report-section"><h3>⚠️ Desenvolvimento</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(192,57,43,.08);border-radius:7px;border:1px solid rgba(192,57,43,.2)">${a.dev}</p></div>`;
     if(a.msg)html+=`<div class="report-section"><h3>💌 Mensagem</h3><p style="font-size:12px;font-style:italic;line-height:1.6;padding:9px;background:rgba(201,168,76,.08);border-radius:7px;border:1px solid rgba(201,168,76,.2)">"${a.msg}"</p></div>`;
-    if(a.sAv||a.sFn){html+=`<div class="report-section"><h3>✍️ Assinaturas</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">`;if(a.sAv)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">AVALIADOR(A)</div><img src="${a.sAv}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;if(a.sFn)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">FUNCIONÁRIA</div><img src="${a.sFn}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;html+=`</div></div>`}
+    if(a.acordos)html+=`<div class="report-section"><h3>📝 Contrato de Acordos</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(201,168,76,.08);border-radius:7px;border:1px solid rgba(201,168,76,.2)">${a.acordos}</p></div>`;
+    if(a.sAv||a.sFn){html+=`<div class="report-section"><h3>✍️ Assinaturas</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">`;if(a.sAv)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">AVALIADOR(A)</div><img src="${a.sAv}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;if(a.sFn)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">FUNCIONÁRIA</div><img src="${a.sFn}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;html+=`</div></div>`;
+    if(a.sigAcAv||a.sigAcFn){html+=`<div class="report-section"><h3>✍️ Assinaturas do Contrato</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">`;if(a.sigAcAv)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">AVALIADOR(A) — TESTEMUNHA</div><img src="${a.sigAcAv}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;if(a.sigAcFn)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">FUNCIONÁRIA — CIENTE</div><img src="${a.sigAcFn}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;html+=`</div></div>`}}
   }
   html+=`<div style="display:flex;gap:8px;margin-top:18px"><button class="btn-submit" style="padding:12px" onclick="expRec(${id},'${tipo}')">📄 Exportar</button><button class="btn-sm" style="padding:12px 14px" onclick="delRec(${id},'${tipo}')">🗑️ Excluir</button></div>`;
   document.getElementById('modalContent').innerHTML=html;document.getElementById('visitModal').classList.add('open');
@@ -738,9 +888,11 @@ function expRec(id,tipo){
     Object.entries(a.crit||{}).forEach(([cat,items])=>{h+=`<h2>${cat}</h2><div class="cg">`;items.forEach(i=>{const s='★'.repeat(i.n)+'☆'.repeat(5-i.n);h+=`<div class="cr ${i.n>=4?'ok':i.n<=2?'nok':''}"><strong>${i.l}</strong> — <span style="color:#C9A84C">${s} (${i.n}/5)</span>${i.c?`<br><small>${i.c}</small>`:''}</div>`});h+=`</div>`});
     const pm=a.pm||{};
     if(pm.obj||pm.acao){h+=`<h2>📈 Plano de Melhoria</h2><div class="nb">`;if(pm.obj)h+=`<strong>Objetivo:</strong> ${pm.obj}<br>`;if(pm.acao)h+=`<strong>Ação:</strong> ${pm.acao}<br>`;if(pm.prazo)h+=`<strong>Prazo:</strong> ${pm.prazo} | <strong>Status:</strong> ${pm.status||'—'}`;h+=`</div>`}
+    if(a.acordos)h+=`<h2>📝 Contrato de Acordos</h2><div class="nb" style="border-left:4px solid #C9A84C">${a.acordos}</div>`;
     if(a.pos)h+=`<h2>👍 Pontos Fortes</h2><div class="nb">${a.pos}</div>`;
     if(a.dev)h+=`<h2>⚠️ Desenvolvimento</h2><div class="nb">${a.dev}</div>`;
     if(a.msg)h+=`<h2>💌 Mensagem</h2><div class="nb" style="font-style:italic">"${a.msg}"</div>`;
+    if(a.sigAcAv||a.sigAcFn){h+=`<h2>✍️ Assinaturas do Contrato de Acordos</h2><div class="sa">`;if(a.sigAcAv)h+=`<div class="sb2"><div class="sl">Avaliador(a) — Testemunha</div><img class="sig" src="${a.sigAcAv}"/></div>`;if(a.sigAcFn)h+=`<div class="sb2"><div class="sl">Funcionária — Ciente e de acordo</div><img class="sig" src="${a.sigAcFn}"/></div>`;h+=`</div>`}
     h+=buildEF(null,null,a.sAv,a.sFn,a.av,a.nome);
     dlHTML(h,`Avaliacao_${a.nome.replace(/ /g,'_')}_${a.data}.html`);
   }
@@ -798,9 +950,15 @@ function showPage(id){
   const m={dashboard:0,'nova-visita':1,'avaliacao-func':2,historico:3,ranking:4};
   const tabs=document.querySelectorAll('.nav-tab');
   if(m[id]!==undefined)tabs[m[id]].classList.add('active');
+  // Bottom nav ativo
+  [0,1,2,3,4].forEach(i=>{
+    const b=document.getElementById('bn'+i);
+    if(b)b.style.color=i===m[id]?'var(--gold)':'var(--light)';
+  });
   if(id==='historico')renderHist();
   if(id==='ranking')renderRank();
   if(id==='dashboard')renderDash();
+  window.scrollTo(0,0);
 }
 
 
@@ -832,6 +990,144 @@ function restoreData(input){
     input.value='';
   };
   reader.readAsText(file);
+}
+
+
+function mostrarPDI(){
+  document.getElementById('pdiSection').style.display='block';
+  document.getElementById('pdiSection').scrollIntoView({behavior:'smooth'});
+}
+
+async function gerarPDI(){
+  const nome=document.getElementById('fFN').value||'a funcionária';
+  const loja=document.getElementById('fFL').value;
+  
+  // Coletar notas por categoria
+  const notasPorCat={};
+  let totalPontos=0, totalCrit=0;
+  Object.entries(FCAT).forEach(([cat,items])=>{
+    const notas=items.map(item=>S.fstars[cat+'|'+item]||0);
+    const media=(notas.reduce((a,b)=>a+b,0)/notas.length).toFixed(1);
+    notasPorCat[cat]={media,itens:items.map((item,i)=>({item,nota:notas[i]}))};
+    totalPontos+=notas.reduce((a,b)=>a+b,0);
+    totalCrit+=notas.length;
+  });
+  
+  const pct=Math.round((totalPontos/(totalCrit*5))*100);
+  const clf=getClf(pct);
+  
+  // Montar resumo para a IA
+  let resumoNotas='';
+  Object.entries(notasPorCat).forEach(([cat,d])=>{
+    resumoNotas+=`
+${cat} (média ${d.media}/5):
+`;
+    d.itens.forEach(x=>resumoNotas+=`  - ${x.item}: ${x.nota}/5
+`);
+  });
+  
+  const btn=document.getElementById('btnGerarPDI');
+  btn.disabled=true;btn.textContent='⏳ Gerando PDI...';
+  document.getElementById('pdiLoadingBadge').textContent='gerando com IA...';
+  document.getElementById('pdiContent').innerHTML='<div style="text-align:center;padding:30px;color:var(--mid)"><div style="font-size:28px;margin-bottom:10px">✨</div>Analisando as notas e criando seu PDI personalizado...</div>';
+
+  try{
+    const response = await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-20250514",
+        max_tokens:1000,
+        messages:[{
+          role:"user",
+          content:`Você é especialista em desenvolvimento de pessoas no varejo premium de cosméticos e perfumaria.
+
+Crie um PDI (Plano de Desenvolvimento Individual) de alta performance para ${nome}, funcionária da loja ${loja} da marca Avatim.
+
+Classificação geral: ${clf.l} (${pct}%)
+
+Notas por critério:
+${resumoNotas}
+
+Monte um PDI focado em alta performance com base nos dados acima. Use o seguinte formato JSON:
+{
+  "diagnostico": "2-3 frases sobre o perfil geral da funcionária com base nas notas",
+  "pontosFortesDestaque": ["ponto 1", "ponto 2", "ponto 3"],
+  "prioridades": [
+    {"area": "nome da área", "nota": X, "acao": "ação concreta e específica", "prazo": "30/60/90 dias", "indicador": "como medir o progresso"}
+  ],
+  "metasPrincipais": [
+    {"prazo": "30 dias", "meta": "meta específica"},
+    {"prazo": "60 dias", "meta": "meta específica"},
+    {"prazo": "90 dias", "meta": "meta específica"}
+  ],
+  "mensagemMotivacional": "mensagem curta e inspiradora personalizada para ${nome}"
+}
+
+Retorne APENAS o JSON, sem texto adicional.`
+        }]
+      })
+    });
+    
+    const data=await response.json();
+    const text=data.content[0].text;
+    const pdi=JSON.parse(text.replace(/```json|```/g,'').trim());
+    window._pdiGerado=text;
+    
+    // Renderizar PDI
+    const pctColor=pct>=80?'var(--green)':pct>=60?'var(--gold)':'var(--red)';
+    let html=`
+      <div style="background:linear-gradient(135deg,${pctColor}15,${pctColor}08);border:1px solid ${pctColor}44;border-radius:11px;padding:14px;margin-bottom:14px">
+        <div style="font-size:11px;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">📊 Diagnóstico</div>
+        <div style="font-size:13px;line-height:1.6;color:var(--dark)">${pdi.diagnostico}</div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">💪 Pontos Fortes</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          ${pdi.pontosFortesDestaque.map(p=>`<span style="background:rgba(90,138,106,.12);border:1px solid rgba(90,138,106,.3);border-radius:18px;padding:4px 12px;font-size:12px;color:var(--green)">${p}</span>`).join('')}
+        </div>
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">🎯 Prioridades de Desenvolvimento</div>
+        ${pdi.prioridades.map(p=>`
+          <div style="background:var(--white);border:1px solid #EDE8E0;border-radius:9px;padding:12px;margin-bottom:8px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span style="font-size:12px;font-weight:700;color:var(--dark)">${p.area}</span>
+              <span style="background:${p.nota<=2?'rgba(192,57,43,.1)':'rgba(201,168,76,.1)'};border:1px solid ${p.nota<=2?'rgba(192,57,43,.3)':'rgba(201,168,76,.3)'};border-radius:18px;padding:2px 8px;font-size:10px;font-weight:700;color:${p.nota<=2?'var(--red)':'var(--gold-dark)'}">Nota ${p.nota}/5</span>
+              <span style="background:rgba(90,122,154,.1);border:1px solid rgba(90,122,154,.3);border-radius:18px;padding:2px 8px;font-size:10px;color:var(--blue)">${p.prazo}</span>
+            </div>
+            <div style="font-size:12px;color:var(--dark);margin-bottom:4px">📌 ${p.acao}</div>
+            <div style="font-size:11px;color:var(--mid)">📈 Indicador: ${p.indicador}</div>
+          </div>`).join('')}
+      </div>
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">🗓️ Metas 30/60/90 dias</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          ${pdi.metasPrincipais.map((m,i)=>`
+            <div style="background:${i===0?'rgba(90,138,106,.08)':i===1?'rgba(201,168,76,.08)':'rgba(90,122,154,.08)'};border:1px solid ${i===0?'rgba(90,138,106,.2)':i===1?'rgba(201,168,76,.2)':'rgba(90,122,154,.2)'};border-radius:9px;padding:11px;text-align:center">
+              <div style="font-size:10px;font-weight:700;color:${i===0?'var(--green)':i===1?'var(--gold-dark)':'var(--blue)'};margin-bottom:5px">${m.prazo}</div>
+              <div style="font-size:11px;color:var(--dark);line-height:1.4">${m.meta}</div>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div style="background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(212,132,122,.1));border:1px solid rgba(201,168,76,.3);border-radius:11px;padding:14px;text-align:center">
+        <div style="font-size:18px;margin-bottom:6px">💌</div>
+        <div style="font-size:13px;font-style:italic;color:var(--dark-2);line-height:1.6">"${pdi.mensagemMotivacional}"</div>
+      </div>`;
+    
+    document.getElementById('pdiContent').innerHTML=html;
+    document.getElementById('pdiLoadingBadge').textContent='✅ gerado!';
+    btn.textContent='🔄 Gerar novamente';
+    btn.disabled=false;
+    showToast('🚀 PDI gerado com sucesso!');
+    
+  } catch(err){
+    console.error(err);
+    document.getElementById('pdiContent').innerHTML='<div style="color:var(--red);padding:20px;text-align:center">❌ Erro ao gerar PDI. Verifique sua conexão e tente novamente.</div>';
+    document.getElementById('pdiLoadingBadge').textContent='❌ erro';
+    btn.textContent='✨ Gerar PDI';
+    btn.disabled=false;
+  }
 }
 
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
