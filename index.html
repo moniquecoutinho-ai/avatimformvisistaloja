@@ -40,6 +40,14 @@ nav{background:var(--dark);padding:0 20px;display:flex;align-items:center;justif
 .page.active{display:block}
 .page-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--dark);margin-bottom:4px}
 .page-sub{color:var(--mid);font-size:13px;margin-bottom:24px}
+
+/* ===== PERIOD TOGGLE ===== */
+.period-toggle{display:inline-flex;background:var(--white);border:1px solid #EDE8E0;border-radius:20px;padding:3px;gap:2px}
+.period-btn{padding:5px 14px;border-radius:16px;font-size:11px;font-weight:600;border:none;background:none;color:var(--mid);cursor:pointer;transition:all .2s;letter-spacing:.3px}
+.period-btn.active{background:var(--dark);color:var(--gold)}
+.period-btn:hover:not(.active){color:var(--gold-dark)}
+.dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
 .stat-card{background:var(--white);border:1px solid #EDE8E0;border-radius:14px;padding:18px;transition:all .2s}
 .stat-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
@@ -193,6 +201,13 @@ canvas.sig-canvas{width:100%;height:100px;border:1px solid #DDD5CA;border-radius
 .report-item{font-size:11px;padding:6px 10px;background:var(--white);border-radius:7px;border:1px solid #EDE8E0}
 .report-item.ok{border-color:rgba(90,138,106,.3)}.report-item.nok{border-color:rgba(192,57,43,.3)}
 
+/* Annual stats highlight */
+.stat-card.annual-mode{border-color:rgba(201,168,76,.35);background:linear-gradient(135deg,var(--white),#FFFBF0)}
+.period-badge{font-size:10px;font-weight:700;color:var(--gold-dark);background:linear-gradient(135deg,#FFF8E8,#FFE9B3);border:1px solid var(--gold-light);border-radius:18px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+
+/* Ranking period row */
+.rank-period-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+
 /* ===== MOBILE OTIMIZADO ===== */
 @media(max-width:768px){
   nav{padding:0 8px;height:56px}
@@ -202,76 +217,50 @@ canvas.sig-canvas{width:100%;height:100px;border:1px solid #DDD5CA;border-radius
   .nav-user{gap:4px}
   .nav-avatar{width:26px;height:26px;font-size:10px}
   .btn-logout{font-size:10px;padding:4px 7px}
-
   .page{padding:12px}
   .page-title{font-size:20px}
-
   .stats-grid{grid-template-columns:1fr 1fr;gap:8px}
   .stat-card{padding:12px}
   .stat-value{font-size:22px}
-
   .two-col,.form-row,.checklist-grid,.photo-area,
   .sig-container,.medals-showcase,.report-grid,.melhoria-grid{grid-template-columns:1fr}
-
   .loja-tabs{gap:5px}
   .loja-tab{padding:8px 12px;font-size:12px;border-radius:20px}
   .loja-tab.active{font-weight:700}
-
   .form-section{padding:16px}
   .form-section-title{font-size:13px}
-
-  .form-group input,.form-group select,.form-group textarea{
-    font-size:16px !important; /* evita zoom automático no iOS */
-    padding:11px 13px
-  }
-
+  .form-group input,.form-group select,.form-group textarea{font-size:16px !important;padding:11px 13px}
   .check-item{padding:10px 12px;min-height:44px}
   .check-label{font-size:12px}
   .check-box{width:22px;height:22px;font-size:12px}
-
   .atn-row{padding:10px 12px}
   .atn-label{font-size:13px}
   .atn-btn{padding:8px 13px;font-size:12px;min-height:36px}
-
   .star-btn{font-size:28px}
   .star-row{flex-direction:column;gap:8px;padding:12px 0}
   .stars-wrap{justify-content:flex-start}
-
   canvas.sig-canvas{height:120px}
-
   .btn-submit{padding:16px;font-size:13px;min-height:52px}
   .btn-sm{padding:8px 14px;font-size:12px;min-height:36px}
   .btn-export{padding:8px 13px;font-size:12px;min-height:36px}
-
   .visit-card{padding:12px 14px;gap:10px}
   .visit-store{font-size:13px}
   .visit-score-circle{width:42px;height:42px;font-size:13px}
-
   .full-rank-item{padding:11px 14px;gap:8px}
   .full-rank-score{font-size:16px}
-
   .modal{padding:18px;border-radius:14px}
-
   .form-progress{flex-wrap:wrap;gap:8px}
   .score-display{font-size:18px}
-
   .ranking-header{flex-direction:column;gap:8px}
   .month-btn{padding:9px 16px;font-size:13px;min-height:40px}
-
-  /* PDI 30/60/90 em coluna no mobile */
-  #pdiContent [style*="grid-template-columns:repeat(3"]{
-    grid-template-columns:1fr !important
-  }
+  #pdiContent [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr !important}
+  .dash-header{flex-direction:column;align-items:flex-start}
 }
-
-/* ===== TABLET ===== */
 @media(max-width:1024px) and (min-width:769px){
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   .medals-showcase{grid-template-columns:repeat(2,1fr)}
   .page{padding:18px}
 }
-
-/* ===== TOUCH — áreas clicáveis maiores ===== */
 @media(hover:none) and (pointer:coarse){
   .check-item{min-height:48px}
   .atn-btn{min-height:40px;padding:9px 14px}
@@ -301,7 +290,9 @@ canvas.sig-canvas{width:100%;height:100px;border:1px solid #DDD5CA;border-radius
     <div class="nav-tabs">
       <button class="nav-tab active" onclick="showPage('dashboard')">📊 Dashboard</button>
       <button class="nav-tab" onclick="showPage('nova-visita')">🏪 Visita Loja</button>
-      <button class="nav-tab" onclick="showPage('avaliacao-func')">👩 Avaliação</button>
+      <button class="nav-tab" onclick="showPage('avaliacao-func')">👩 Vendedora</button>
+      <button class="nav-tab" onclick="showPage('avaliacao-lider')">👑 Líder</button>
+      <button class="nav-tab" onclick="showPage('feedback')">💬 Feedback</button>
       <button class="nav-tab" onclick="showPage('historico')">📋 Histórico</button>
       <button class="nav-tab" onclick="showPage('ranking')">🏆 Ranking</button>
     </div>
@@ -315,17 +306,32 @@ canvas.sig-canvas{width:100%;height:100px;border:1px solid #DDD5CA;border-radius
 
   <!-- DASHBOARD -->
   <div class="page active" id="page-dashboard">
-    <div class="page-title">Bom dia, GManjos ✨</div>
-    <div class="page-sub" id="dashDate"></div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="stat-icon">🏪</div><div class="stat-value" id="statVisitas">0</div><div class="stat-label">Visitas este mês</div></div>
-      <div class="stat-card"><div class="stat-icon">👩</div><div class="stat-value" id="statAvaliacoes">0</div><div class="stat-label">Avaliações este mês</div></div>
-      <div class="stat-card"><div class="stat-icon">🏆</div><div class="stat-value" id="statMelhorLoja">—</div><div class="stat-label">Melhor loja</div></div>
-      <div class="stat-card"><div class="stat-icon">⭐</div><div class="stat-value" id="statMelhorFunc">—</div><div class="stat-label">Melhor funcionária</div></div>
+    <div class="dash-header">
+      <div>
+        <div class="page-title">Bom dia, GManjos ✨</div>
+        <div class="page-sub" id="dashDate"></div>
+      </div>
+      <div class="period-toggle">
+        <button class="period-btn active" id="dashPeriodMonth" onclick="setDashPeriod('month')">Mensal</button>
+        <button class="period-btn" id="dashPeriodYear" onclick="setDashPeriod('year')">Anual</button>
+      </div>
+    </div>
+    <div id="dashPeriodLabel" style="margin-bottom:12px"></div>
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card" id="scVisitas"><div class="stat-icon">🏪</div><div class="stat-value" id="statVisitas">0</div><div class="stat-label" id="statVisitasLabel">Visitas este mês</div></div>
+      <div class="stat-card" id="scAvals"><div class="stat-icon">👩</div><div class="stat-value" id="statAvaliacoes">0</div><div class="stat-label" id="statAvaliasLabel">Avaliações este mês</div></div>
+      <div class="stat-card" id="scMelhorLoja"><div class="stat-icon">🏆</div><div class="stat-value" id="statMelhorLoja">—</div><div class="stat-label">Melhor loja</div></div>
+      <div class="stat-card" id="scMelhorFunc"><div class="stat-icon">⭐</div><div class="stat-value" id="statMelhorFunc">—</div><div class="stat-label">Melhor funcionária</div></div>
     </div>
     <div class="two-col">
-      <div class="card"><div class="card-title">🏅 Ranking de Lojas</div><div id="dashTopLojas"></div></div>
-      <div class="card"><div class="card-title">👑 Top Funcionárias</div><div id="dashTopFunc"></div></div>
+      <div class="card">
+        <div class="card-title">🏅 Ranking de Lojas <span id="dashLojasPeriodBadge" style="font-size:10px;font-weight:400;color:var(--mid)"></span></div>
+        <div id="dashTopLojas"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">👑 Top Funcionárias <span id="dashFuncPeriodBadge" style="font-size:10px;font-weight:400;color:var(--mid)"></span></div>
+        <div id="dashTopFunc"></div>
+      </div>
     </div>
   </div>
 
@@ -493,6 +499,184 @@ canvas.sig-canvas{width:100%;height:100px;border:1px solid #DDD5CA;border-radius
     </div>
   </div>
 
+  <!-- AVALIAÇÃO LÍDER -->
+  <div class="page" id="page-avaliacao-lider">
+    <div class="page-title">Avaliação de Líder</div>
+    <div class="page-sub">Avaliação de desempenho — Vendedor(a) Líder · nota de 1 a 5 estrelas</div>
+    <div class="loja-tabs-wrap">
+      <div style="font-size:10px;font-weight:600;color:var(--mid);letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px">Selecione a Loja</div>
+      <div class="loja-tabs" id="liderLojaTabs">
+        <div class="loja-tab active" onclick="selLiderLoja(this,'Shopping Mooca')">🛍️ Shopping Mooca</div>
+        <div class="loja-tab" onclick="selLiderLoja(this,'Jardim Paulista Lorena')">🌿 Lorena</div>
+        <div class="loja-tab" onclick="selLiderLoja(this,'Vila Leopoldina')">🦋 Leopoldina</div>
+        <div class="loja-tab" onclick="selLiderLoja(this,'Perdizes')">🌸 Perdizes</div>
+        <div class="loja-tab" onclick="selLiderLoja(this,'Santana')">⭐ Santana</div>
+        <div class="loja-tab" onclick="selLiderLoja(this,'Alto de Pinheiros')">🌳 Alto Pinheiros</div>
+        <div class="loja-tab" onclick="selLiderLoja(this,'Shop Ibirapuera')">✨ Ibirapuera</div>
+      </div>
+    </div>
+    <div class="form-progress">
+      <div style="font-size:11px;color:var(--mid);min-width:80px">Pontuação</div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="liderBar" style="width:0%"></div></div>
+      <div class="score-display" id="liderScore">0</div>
+      <div style="font-size:11px;color:var(--mid);min-width:100px;text-align:right" id="liderClassifEl"></div>
+    </div>
+    <div class="visit-form">
+      <div class="form-section">
+        <div class="form-section-title">📋 Dados da Avaliação</div>
+        <div class="form-row">
+          <div class="form-group"><label>Loja</label><input type="text" id="fLL" readonly style="background:#F5F0E8;font-weight:600" value="Shopping Mooca"/></div>
+          <div class="form-group"><label>Data</label><input type="date" id="fLD"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Nome do(a) Líder</label><input type="text" id="fLN" placeholder="Nome completo"/></div>
+          <div class="form-group"><label>Tempo no cargo</label><input type="text" id="fLT" placeholder="Ex: 6 meses, 1 ano..."/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Avaliador(a)</label><input type="text" id="fLA" value="GManjos"/></div>
+          <div class="form-group"><label>Período</label><input type="text" id="fLP" placeholder="Ex: Março 2026"/></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">⭐ Critérios de Avaliação <small style="font-size:10px;font-weight:400;color:var(--mid)">&nbsp;1=Crítico · 2=Precisa melhorar · 3=Bom · 4=Muito bom · 5=Excelente</small></div>
+        <div id="liderCriterios"></div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">📈 Plano de Desenvolvimento</div>
+        <div class="melhoria-grid">
+          <div class="melhoria-item"><label>Objetivo de liderança</label><textarea id="lPmObj" placeholder="O que precisa desenvolver como líder..."></textarea></div>
+          <div class="melhoria-item"><label>Ação necessária</label><textarea id="lPmAcao" placeholder="Como vai desenvolver..."></textarea></div>
+          <div class="melhoria-item"><label>Prazo</label><input type="text" id="lPmPrazo" placeholder="Ex: 30 dias"/></div>
+          <div class="melhoria-item"><label>Status</label>
+            <select id="lPmStatus"><option value="">Selecione</option><option>Em andamento</option><option>Concluído</option><option>Pendente</option><option>Cancelado</option></select>
+          </div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">💬 Feedback Geral</div>
+        <div class="form-group"><label>Pontos fortes de liderança</label><textarea id="lFFpos" placeholder="Destaque os pontos fortes como líder..."></textarea></div>
+        <div class="form-group"><label>Pontos de desenvolvimento</label><textarea id="lFFdev" placeholder="O que precisa desenvolver na liderança..."></textarea></div>
+        <div class="form-group"><label>Mensagem para o(a) líder</label><textarea id="lFFmsg" placeholder="Mensagem de orientação ou motivação..."></textarea></div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">✍️ Assinaturas</div>
+        <div class="sig-container">
+          <div><div class="sig-label">Avaliador(a)</div><canvas class="sig-canvas" id="sigLAv" width="400" height="100"></canvas><div class="sig-actions"><button class="btn-sm" onclick="clearSig('sigLAv')">Limpar</button></div></div>
+          <div><div class="sig-label">Líder</div><canvas class="sig-canvas" id="sigLFn" width="400" height="100"></canvas><div class="sig-actions"><button class="btn-sm" onclick="clearSig('sigLFn')">Limpar</button></div></div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">📝 Contrato de Acordos</div>
+        <div class="form-group">
+          <label>Acordos combinados nesta avaliação</label>
+          <textarea id="lAcordos" placeholder="Descreva os acordos de liderança estabelecidos..." style="min-height:120px"></textarea>
+        </div>
+        <div style="margin-top:8px;padding:10px 14px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:9px;font-size:11px;color:var(--mid)">
+          ✍️ Ao assinar abaixo, o(a) líder confirma que leu, entendeu e concorda com os acordos acima.
+        </div>
+        <div class="sig-container" style="margin-top:12px">
+          <div><div class="sig-label">Avaliador(a) — Testemunha</div><canvas class="sig-canvas" id="sigLAcAv" width="400" height="100"></canvas><div class="sig-actions"><button class="btn-sm" onclick="clearSig('sigLAcAv')">Limpar</button></div></div>
+          <div><div class="sig-label">Líder — Ciente e de acordo</div><canvas class="sig-canvas" id="sigLAcFn" width="400" height="100"></canvas><div class="sig-actions"><button class="btn-sm" onclick="clearSig('sigLAcFn')">Limpar</button></div></div>
+        </div>
+      </div>
+      <div class="form-section" id="liderPdiSection">
+        <div class="form-section-title">🚀 PDI — Plano de Desenvolvimento do Líder <span id="liderPdiLoadingBadge" style="font-size:10px;font-weight:400;color:var(--mid);margin-left:6px"></span></div>
+        <div id="liderPdiContent" style="font-size:13px;color:var(--mid);text-align:center;padding:20px">
+          Clique em "Gerar PDI" para criar um plano personalizado de liderança.
+        </div>
+        <button id="btnGerarPDILider" class="btn-submit" style="margin-top:12px;padding:12px;font-size:13px" onclick="gerarPDILider()">✨ Gerar PDI</button>
+      </div>
+      <button class="btn-submit" onclick="submitLider()">👑 SALVAR AVALIAÇÃO DO LÍDER 👑</button>
+    </div>
+  </div>
+
+  <!-- FEEDBACK RÁPIDO -->
+  <div class="page" id="page-feedback">
+    <div class="page-title">Feedback & Alinhamento</div>
+    <div class="page-sub">Conversas rápidas, alinhamentos e feedbacks do dia a dia</div>
+    <div class="loja-tabs-wrap">
+      <div style="font-size:10px;font-weight:600;color:var(--mid);letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px">Selecione a Loja</div>
+      <div class="loja-tabs" id="fbLojaTabs">
+        <div class="loja-tab active" onclick="selFbLoja(this,'Shopping Mooca')">🛍️ Shopping Mooca</div>
+        <div class="loja-tab" onclick="selFbLoja(this,'Jardim Paulista Lorena')">🌿 Lorena</div>
+        <div class="loja-tab" onclick="selFbLoja(this,'Vila Leopoldina')">🦋 Leopoldina</div>
+        <div class="loja-tab" onclick="selFbLoja(this,'Perdizes')">🌸 Perdizes</div>
+        <div class="loja-tab" onclick="selFbLoja(this,'Santana')">⭐ Santana</div>
+        <div class="loja-tab" onclick="selFbLoja(this,'Alto de Pinheiros')">🌳 Alto Pinheiros</div>
+        <div class="loja-tab" onclick="selFbLoja(this,'Shop Ibirapuera')">✨ Ibirapuera</div>
+      </div>
+    </div>
+    <div class="visit-form">
+      <div class="form-section">
+        <div class="form-section-title">📋 Dados do Feedback</div>
+        <div class="form-row">
+          <div class="form-group"><label>Loja</label><input type="text" id="fbLoja" readonly style="background:#F5F0E8;font-weight:600" value="Shopping Mooca"/></div>
+          <div class="form-group"><label>Data</label><input type="date" id="fbData"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Nome da Funcionária</label><input type="text" id="fbNome" placeholder="Nome completo"/></div>
+          <div class="form-group"><label>Cargo</label><input type="text" id="fbCargo" placeholder="Vendedora, Líder..."/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Avaliador(a)</label><input type="text" id="fbAv" value="GManjos"/></div>
+          <div class="form-group"><label>Tipo de conversa</label>
+            <select id="fbTipo">
+              <option value="alinhamento">🎯 Alinhamento de expectativas</option>
+              <option value="reconhecimento">🌟 Reconhecimento</option>
+              <option value="corretivo">⚠️ Feedback corretivo</option>
+              <option value="desenvolvimento">🌱 Conversa de desenvolvimento</option>
+              <option value="retorno">🔄 Retorno de avaliação</option>
+              <option value="admissao">🆕 Integração / Admissão</option>
+              <option value="desligamento">🔴 Pré-desligamento</option>
+              <option value="outro">💬 Outro</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">💬 Conteúdo da Conversa</div>
+        <div class="form-group"><label>Contexto — O que motivou esta conversa?</label><textarea id="fbContexto" placeholder="Ex: resultado abaixo da meta, comportamento observado, solicitação da funcionária..." style="min-height:80px"></textarea></div>
+        <div class="form-group"><label>Situação específica observada (SBI — Situação)</label><textarea id="fbSituacao" placeholder="Descreva o que aconteceu, quando e onde. Seja específica e factual..." style="min-height:80px"></textarea></div>
+        <div class="form-group"><label>Comportamento observado (SBI — Comportamento)</label><textarea id="fbComportamento" placeholder="Descreva o comportamento específico, não a pessoa. Ex: 'Você não cumprimentou o cliente' e não 'Você é grossa'..." style="min-height:80px"></textarea></div>
+        <div class="form-group"><label>Impacto gerado (SBI — Impacto)</label><textarea id="fbImpacto" placeholder="Qual foi o impacto desse comportamento para o cliente, equipe ou resultado da loja?" style="min-height:80px"></textarea></div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">🌟 Pontos Positivos e de Desenvolvimento</div>
+        <div class="form-group"><label>O que ela faz bem e deve continuar fazendo</label><textarea id="fbPositivo" placeholder="Reconheça os pontos fortes observados nesta conversa..."></textarea></div>
+        <div class="form-group"><label>O que precisa mudar ou desenvolver</label><textarea id="fbDesenvolver" placeholder="Seja específica: qual comportamento, como mudar, por que importa..."></textarea></div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">🤝 Acordos e Próximos Passos</div>
+        <div class="form-group"><label>O que foi combinado nesta conversa</label><textarea id="fbAcordos" placeholder="Liste os acordos, compromissos e próximos passos definidos juntas..." style="min-height:100px"></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label>Prazo para revisão</label><input type="text" id="fbPrazo" placeholder="Ex: 15 dias, próxima semana..."/></div>
+          <div class="form-group"><label>Como a funcionária recebeu o feedback?</label>
+            <select id="fbRecepcao">
+              <option value="">Selecione</option>
+              <option value="muito_bem">😊 Muito bem — aberta e receptiva</option>
+              <option value="bem">🙂 Bem — aceitou com tranquilidade</option>
+              <option value="neutro">😐 Neutra — pouco expressiva</option>
+              <option value="resistencia">😟 Com resistência — defensiva</option>
+              <option value="mal">😠 Mal — discordou ou ficou chateada</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Observações adicionais</label><textarea id="fbObs" placeholder="Qualquer informação relevante sobre o clima da conversa, contexto emocional ou outros pontos..."></textarea></div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">✍️ Assinaturas — Ciência da Conversa</div>
+        <div style="margin-bottom:10px;padding:10px 14px;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:9px;font-size:11px;color:var(--mid)">
+          ✍️ A assinatura da funcionária confirma que a conversa aconteceu e que ela tomou ciência dos pontos discutidos.
+        </div>
+        <div class="sig-container">
+          <div><div class="sig-label">Avaliador(a)</div><canvas class="sig-canvas" id="sigFbAv" width="400" height="100"></canvas><div class="sig-actions"><button class="btn-sm" onclick="clearSig('sigFbAv')">Limpar</button></div></div>
+          <div><div class="sig-label">Funcionária — Ciente</div><canvas class="sig-canvas" id="sigFbFn" width="400" height="100"></canvas><div class="sig-actions"><button class="btn-sm" onclick="clearSig('sigFbFn')">Limpar</button></div></div>
+        </div>
+      </div>
+      <button class="btn-submit" onclick="submitFeedback()">💬 SALVAR FEEDBACK 💬</button>
+    </div>
+  </div>
+
   <!-- HISTÓRICO -->
   <div class="page" id="page-historico">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px">
@@ -515,11 +699,22 @@ canvas.sig-canvas{width:100%;height:100px;border:1px solid #DDD5CA;border-radius
   <!-- RANKING -->
   <div class="page" id="page-ranking">
     <div class="ranking-header">
-      <div><div class="page-title">Ranking & Medalhas</div><div class="page-sub">Competição mensal entre lojas e funcionárias</div></div>
-      <div class="month-selector">
-        <button class="month-btn" onclick="changeMonth(-1)">◀</button>
-        <div class="month-display" id="monthDisplay"></div>
-        <button class="month-btn" onclick="changeMonth(1)">▶</button>
+      <div><div class="page-title">Ranking & Medalhas</div><div class="page-sub">Competição entre lojas e funcionárias</div></div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <div class="period-toggle">
+          <button class="period-btn active" id="rankPeriodMonth" onclick="setRankPeriod('month')">Mensal</button>
+          <button class="period-btn" id="rankPeriodYear" onclick="setRankPeriod('year')">Anual</button>
+        </div>
+        <div id="rankMonthNav" class="month-selector">
+          <button class="month-btn" onclick="changeMonth(-1)">◀</button>
+          <div class="month-display" id="monthDisplay"></div>
+          <button class="month-btn" onclick="changeMonth(1)">▶</button>
+        </div>
+        <div id="rankYearNav" style="display:none" class="month-selector">
+          <button class="month-btn" onclick="changeYear(-1)">◀</button>
+          <div class="month-display" id="yearDisplay"></div>
+          <button class="month-btn" onclick="changeYear(1)">▶</button>
+        </div>
       </div>
     </div>
     <div class="medals-showcase" id="medalsShowcase"></div>
@@ -540,10 +735,13 @@ canvas.sig-canvas{width:100%;height:100px;border:1px solid #DDD5CA;border-radius
       <span style="font-size:20px">🏪</span><span style="font-size:9px">Visita</span>
     </button>
     <button onclick="showPage('avaliacao-func')" id="bn2" style="background:none;border:none;color:var(--light);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;min-width:56px">
-      <span style="font-size:20px">👩</span><span style="font-size:9px">Avaliar</span>
+      <span style="font-size:20px">👩</span><span style="font-size:9px">Vendedora</span>
     </button>
-    <button onclick="showPage('historico')" id="bn3" style="background:none;border:none;color:var(--light);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;min-width:56px">
-      <span style="font-size:20px">📋</span><span style="font-size:9px">Histórico</span>
+    <button onclick="showPage('avaliacao-lider')" id="bn5" style="background:none;border:none;color:var(--light);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;min-width:56px">
+      <span style="font-size:20px">👑</span><span style="font-size:9px">Líder</span>
+    </button>
+    <button onclick="showPage('feedback')" id="bn3" style="background:none;border:none;color:var(--light);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;min-width:56px">
+      <span style="font-size:20px">💬</span><span style="font-size:9px">Feedback</span>
     </button>
     <button onclick="showPage('ranking')" id="bn4" style="background:none;border:none;color:var(--light);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;min-width:56px">
       <span style="font-size:20px">🏆</span><span style="font-size:9px">Ranking</span>
@@ -571,43 +769,7 @@ const CHK={
 
 const ATN=[{id:'com',l:'Comunicação visual atualizada',p:8},{id:'abr',l:'Abordagem ativa e cordial',p:8},{id:'tec',l:'Conhecimento técnico dos produtos',p:8},{id:'val',l:'Foco em valor e benefícios',p:8},{id:'adi',l:'Produto adicional oferecido',p:6},{id:'fec',l:'Técnicas de fechamento aplicadas',p:6},{id:'wha',l:'Ação de venda via WhatsApp',p:5}];
 
-const FCAT={
-  '💰 RESULTADOS DE VENDAS':[
-    'Atingimento de metas',
-    'Ticket médio e itens por venda',
-    'Taxa de conversão',
-    'Venda adicional (cross sell)',
-    'Consistência de resultados'
-  ],
-  '💎 ATENDIMENTO AO CLIENTE':[
-    'Abordagem e receptividade',
-    'Escuta ativa e empatia',
-    'Conhecimento técnico dos produtos',
-    'Experiência e encantamento do cliente',
-    'Resolução de objeções',
-    'Fidelização e pós-venda'
-  ],
-  '🌟 COMPORTAMENTO E ATITUDE':[
-    'Responsabilidade e autonomia',
-    'Proatividade e iniciativa',
-    'Colaboração e trabalho em equipe',
-    'Resiliência sob pressão',
-    'Postura e presença profissional',
-    'Abertura a feedbacks'
-  ],
-  '⏰ ASSIDUIDADE':[
-    'Pontualidade',
-    'Frequência e presença',
-    'Aviso antecipado de ausência'
-  ],
-  '🏪 EXECUÇÃO E LOJA':[
-    'Organização e visual da loja',
-    'Reposição e gestão de produtos',
-    'Execução de campanhas e ações',
-    'Cumprimento de processos e rotinas',
-    'Atenção aos indicadores da loja'
-  ]
-};
+const FCAT={'💰 RESULTADOS DE VENDAS':['Atingimento de metas','Ticket médio e itens por venda','Taxa de conversão','Venda adicional (cross sell)','Consistência de resultados'],'💎 ATENDIMENTO AO CLIENTE':['Abordagem e receptividade','Escuta ativa e empatia','Conhecimento técnico dos produtos','Experiência e encantamento do cliente','Resolução de objeções','Fidelização e pós-venda'],'🌟 COMPORTAMENTO E ATITUDE':['Responsabilidade e autonomia','Proatividade e iniciativa','Colaboração e trabalho em equipe','Resiliência sob pressão','Postura e presença profissional','Abertura a feedbacks'],'⏰ ASSIDUIDADE':['Pontualidade','Frequência e presença','Aviso antecipado de ausência'],'🏪 EXECUÇÃO E LOJA':['Organização e visual da loja','Reposição e gestão de produtos','Execução de campanhas e ações','Cumprimento de processos e rotinas','Atenção aos indicadores da loja']};
 
 const MEDALS=[{id:'bs',e:'🌸',t:'Boas Sensações',d:'Melhor atendimento ao cliente'},{id:'op',e:'✨',t:'Ouro Puro',d:'Maior pontuação geral de loja'},{id:'li',e:'🏆',t:'Loja Impecável',d:'Melhor limpeza e organização'},{id:'ve',e:'⭐',t:'Vendedora Estrela',d:'Melhor avaliação de funcionária'},{id:'mb',e:'🎯',t:'Bravura em Vendas',d:'Maior cumprimento de metas'},{id:'va',e:'🎨',t:'Arte da Vitrine',d:'Melhor apresentação visual'}];
 
@@ -618,54 +780,195 @@ let S={
   avals:JSON.parse(localStorage.getItem('av_a')||'[]'),
   chk:{},atn:{},fstars:{},fcomm:{},photos:[null,null],
   vLoja:'Shopping Mooca',fLoja:'Shopping Mooca',
-  rMonth:new Date(),rTab:'lojas'
+  rMonth:new Date(),rYear:new Date().getFullYear(),
+  rTab:'lojas',
+  dashPeriod:'month',   // 'month' | 'year'
+  rankPeriod:'month'    // 'month' | 'year'
 };
 const sv=()=>{localStorage.setItem('av_v',JSON.stringify(S.visits));localStorage.setItem('av_a',JSON.stringify(S.avals))};
 let sigD={};
 
+/* ===== LOGIN ===== */
 function doLogin(){
-  const u=document.getElementById('loginUser').value.trim().toLowerCase();
-  const p=document.getElementById('loginPass').value.trim().toLowerCase();
-  if(u==='gmanjos' && p==='avatim2026'){
+  var u=document.getElementById('loginUser').value.replace(/\s/g,'').toLowerCase();
+  var p=document.getElementById('loginPass').value.replace(/\s/g,'').toLowerCase();
+  if(u==='gmanjos'&&p==='avatim2026'){
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('app').style.display='block';
     initApp();
   } else {
-    const errEl=document.getElementById('loginError');
-    errEl.style.display='block';
-    errEl.textContent='Incorreto. Digitado: ['+u+'] / ['+p+']';
+    var e=document.getElementById('loginError');e.style.display='block';e.textContent='Usuário ou senha incorretos';
   }
 }
 document.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
 function doLogout(){document.getElementById('app').style.display='none';document.getElementById('loginScreen').style.display='flex';document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';document.getElementById('loginError').style.display='none'}
 
+/* ===== INIT ===== */
 function initApp(){
-  // Detectar mobile e mostrar bottom nav
-  const isMobile = window.innerWidth <= 768;
-  if(isMobile){
-    document.getElementById('bottomNav').style.display='block';
-    document.querySelector('nav .nav-tabs').style.display='none';
-    document.querySelectorAll('.page').forEach(p=>p.style.paddingBottom='80px');
-  }
-  window.addEventListener('resize',()=>{
-    const m=window.innerWidth<=768;
-    document.getElementById('bottomNav').style.display=m?'block':'none';
-    document.querySelector('nav .nav-tabs').style.display=m?'none':'flex';
-  });
-
+  const isMobile=window.innerWidth<=768;
+  if(isMobile){document.getElementById('bottomNav').style.display='block';document.querySelector('nav .nav-tabs').style.display='none';document.querySelectorAll('.page').forEach(p=>p.style.paddingBottom='80px')}
+  window.addEventListener('resize',()=>{const m=window.innerWidth<=768;document.getElementById('bottomNav').style.display=m?'block':'none';document.querySelector('nav .nav-tabs').style.display=m?'none':'flex'});
   const t=new Date();
   document.getElementById('dashDate').textContent=t.toLocaleDateString('pt-BR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   const ds=t.toISOString().split('T')[0];
-  document.getElementById('fData').value=ds;document.getElementById('fFD').value=ds;
+  document.getElementById('fData').value=ds;document.getElementById('fFD').value=ds;document.getElementById('fbData').value=ds;document.getElementById('fLD').value=ds;
+  // init month/year displays
   document.getElementById('monthDisplay').textContent=S.rMonth.toLocaleDateString('pt-BR',{month:'long',year:'numeric'}).replace(/^\w/,c=>c.toUpperCase());
-  buildChk();buildAtn();buildFuncCrit();
-  ['sigAv','sigVn','sigFAv','sigFFn','sigAcAv','sigAcFn'].forEach(setupCanvas);
+  document.getElementById('yearDisplay').textContent=S.rYear+'';
+  buildChk();buildAtn();buildFuncCrit();buildLiderCrit();
+  ['sigAv','sigVn','sigFAv','sigFFn','sigAcAv','sigAcFn','sigLAv','sigLFn','sigLAcAv','sigLAcFn','sigFbAv','sigFbFn'].forEach(setupCanvas);
   renderDash();renderHist();renderRank();
 }
 
+/* ===== DASHBOARD PERIOD ===== */
+function setDashPeriod(p){
+  S.dashPeriod=p;
+  document.getElementById('dashPeriodMonth').classList.toggle('active',p==='month');
+  document.getElementById('dashPeriodYear').classList.toggle('active',p==='year');
+  // toggle card style
+  document.querySelectorAll('.stat-card').forEach(c=>{c.classList.toggle('annual-mode',p==='year')});
+  renderDash();
+}
+
+function filterByPeriod(records, period){
+  const now=new Date();
+  if(period==='month'){
+    const mo=now.getMonth(),yr=now.getFullYear();
+    return records.filter(r=>{const d=new Date(r.data);return d.getMonth()===mo&&d.getFullYear()===yr});
+  } else {
+    const yr=now.getFullYear();
+    return records.filter(r=>new Date(r.data).getFullYear()===yr);
+  }
+}
+
+function renderDash(){
+  const p=S.dashPeriod;
+  const now=new Date();
+  const periodLabel=p==='month'
+    ? now.toLocaleDateString('pt-BR',{month:'long',year:'numeric'}).replace(/^\w/,c=>c.toUpperCase())
+    : now.getFullYear()+'';
+
+  document.getElementById('dashPeriodLabel').innerHTML=
+    `<span class="period-badge">${p==='month'?'📅':'📆'} ${periodLabel}</span>`;
+
+  const mv=filterByPeriod(S.visits,p);
+  const ma=filterByPeriod(S.avals.filter(a=>a.tipo==='avaliacao'||a.tipo==='lider'),p);
+
+  document.getElementById('statVisitas').textContent=mv.length;
+  document.getElementById('statAvaliacoes').textContent=ma.length;
+  document.getElementById('statVisitasLabel').textContent=p==='month'?'Visitas este mês':'Visitas este ano';
+  document.getElementById('statAvaliasLabel').textContent=p==='month'?'Avaliações este mês':'Avaliações este ano';
+
+  // Melhor loja
+  const ls=getLS(mv);
+  const sl=Object.entries(ls).sort((a,b)=>b[1].avg-a[1].avg);
+  if(sl.length>0){
+    document.getElementById('statMelhorLoja').textContent=sl[0][0].split(' ').slice(-1)[0];
+  } else {
+    document.getElementById('statMelhorLoja').textContent='—';
+  }
+
+  // Melhor funcionária
+  const fs=getFS(ma);
+  const sf=Object.entries(fs).sort((a,b)=>b[1].avg-a[1].avg);
+  if(sf.length>0){
+    document.getElementById('statMelhorFunc').textContent=sf[0][0].split(' ')[0];
+  } else {
+    document.getElementById('statMelhorFunc').textContent='—';
+  }
+
+  const periodSuffix=p==='month'?'(mês)':'(ano)';
+  document.getElementById('dashLojasPeriodBadge').textContent=periodSuffix;
+  document.getElementById('dashFuncPeriodBadge').textContent=periodSuffix;
+
+  document.getElementById('dashTopLojas').innerHTML=sl.length===0
+    ?`<div style="color:var(--mid);font-size:12px;text-align:center;padding:14px">Nenhuma visita ${p==='month'?'este mês':'este ano'}</div>`
+    :sl.slice(0,5).map((l,i)=>{const avg=Math.round(l[1].t/l[1].c);return`<div class="rank-item"><div class="rank-num ${i<3?'rank-'+(i+1):'rank-other'}">${i+1}</div><div class="rank-info"><div class="rank-name">${l[0]}</div><div class="rank-bar"><div class="rank-fill" style="width:${avg}%"></div></div></div><div class="rank-score">${avg}%</div></div>`}).join('');
+
+  document.getElementById('dashTopFunc').innerHTML=sf.length===0
+    ?`<div style="color:var(--mid);font-size:12px;text-align:center;padding:14px">Nenhuma avaliação ${p==='month'?'este mês':'este ano'}</div>`
+    :sf.slice(0,5).map((f,i)=>{const avg=Math.round(f[1].t/f[1].c);return`<div class="rank-item"><div class="rank-num ${i<3?'rank-'+(i+1):'rank-other'}">${i+1}</div><div class="rank-info"><div class="rank-name">${f[0]}</div><div class="rank-bar"><div class="rank-fill" style="width:${avg}%"></div></div></div><div class="rank-score">${avg}%</div></div>`}).join('');
+}
+
+/* ===== RANKING PERIOD ===== */
+function setRankPeriod(p){
+  S.rankPeriod=p;
+  document.getElementById('rankPeriodMonth').classList.toggle('active',p==='month');
+  document.getElementById('rankPeriodYear').classList.toggle('active',p==='year');
+  document.getElementById('rankMonthNav').style.display=p==='month'?'flex':'none';
+  document.getElementById('rankYearNav').style.display=p==='year'?'flex':'none';
+  renderRank();
+}
+
+let curMon=new Date();
+let curYear=new Date().getFullYear();
+
+function changeMonth(d){
+  curMon=new Date(curMon.getFullYear(),curMon.getMonth()+d,1);
+  document.getElementById('monthDisplay').textContent=curMon.toLocaleDateString('pt-BR',{month:'long',year:'numeric'}).replace(/^\w/,c=>c.toUpperCase());
+  renderRank();
+}
+function changeYear(d){
+  curYear+=d;
+  document.getElementById('yearDisplay').textContent=curYear+'';
+  renderRank();
+}
+
+function switchRankTab(tab,el){S.rTab=tab;document.querySelectorAll('.rtab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderRank()}
+
+function getRankFilteredRecords(){
+  if(S.rankPeriod==='month'){
+    const mo=curMon.getMonth(),yr=curMon.getFullYear();
+    const mv=S.visits.filter(v=>{const d=new Date(v.data);return d.getMonth()===mo&&d.getFullYear()===yr});
+    const ma=S.avals.filter(a=>{const d=new Date(a.data);return d.getMonth()===mo&&d.getFullYear()===yr});
+    return{mv,ma};
+  } else {
+    const mv=S.visits.filter(v=>new Date(v.data).getFullYear()===curYear);
+    const ma=S.avals.filter(a=>new Date(a.data).getFullYear()===curYear);
+    return{mv,ma};
+  }
+}
+
+function renderRank(){
+  const{mv,ma}=getRankFilteredRecords();
+  const ls=getLS(mv),fs=getFS(ma.filter(a=>a.tipo==='avaliacao'||a.tipo==='lider'));
+  const sl=Object.entries(ls).sort((a,b)=>b[1].avg-a[1].avg);
+  const sf=Object.entries(fs).sort((a,b)=>b[1].avg-a[1].avg);
+
+  const win={
+    'bs':sf[0]?{n:sf[0][0],s:'Melhor atendimento'}:null,
+    'op':sl[0]?{n:sl[0][0],s:sl[0][1].avg+'% média'}:null,
+    'li':sl[0]?{n:sl[0][0],s:'Limpeza exemplar'}:null,
+    've':sf[0]?{n:sf[0][0],s:sf[0][1].avg+'% média'}:null,
+    'mb':sl[0]?{n:sl[0][0],s:'Metas em dia'}:null,
+    'va':sl[0]?{n:sl[0][0],s:'Visual impecável'}:null
+  };
+  document.getElementById('medalsShowcase').innerHTML=MEDALS.map(m=>{const w=win[m.id];return`<div class="medal-card"><div class="medal-emoji">${m.e}</div><div class="medal-title">${m.t}</div><div class="medal-desc">${m.d}</div>${w?`<div class="medal-winner">${w.n}</div><div class="medal-winner-store">${w.s}</div>`:'<div class="medal-winner" style="color:var(--light)">—</div>'}</div>`}).join('');
+
+  const rEl=document.getElementById('fullRankingList');
+  const cm={};LOJAS.forEach((l,i)=>cm[l]=LCOLS[i]);
+  const emptyMsg=S.rankPeriod==='month'?'Nenhum registro neste mês':'Nenhum registro neste ano';
+
+  if(S.rTab==='lojas'){
+    if(!sl.length){rEl.innerHTML=`<div style="text-align:center;padding:34px;color:var(--mid)">${emptyMsg}</div>`;return}
+    rEl.innerHTML=sl.map((item,i)=>{const[l,d]=item;const pc=i===0?'pos-1':i===1?'pos-2':i===2?'pos-3':'pos-other';return`<div class="full-rank-item"><div class="full-rank-pos ${pc}">${i+1}</div><div class="full-rank-avatar" style="background:${cm[l]||'#C9A84C'}22;color:${cm[l]||'#C9A84C'}">${l.charAt(0)}</div><div class="full-rank-details"><div class="full-rank-name">${l}</div><div class="full-rank-sub">${d.c} visita${d.c!==1?'s':''}</div></div><div class="full-rank-right"><div class="full-rank-score">${d.avg}%</div>${i===0?'<div style="margin-top:3px"><span class="medal-badge">✨ Ouro Puro</span></div>':''}</div></div>`}).join('');
+  } else if(S.rTab==='funcionarias'){
+    if(!sf.length){rEl.innerHTML=`<div style="text-align:center;padding:34px;color:var(--mid)">${emptyMsg}</div>`;return}
+    const cols=['#C9A84C','#D4847A','#7A9DC9','#84C9A8','#C97AC4'];
+    rEl.innerHTML=sf.map((item,i)=>{const[n,d]=item;const pc=i===0?'pos-1':i===1?'pos-2':i===2?'pos-3':'pos-other';const cl=getClf(d.avg);return`<div class="full-rank-item"><div class="full-rank-pos ${pc}">${i+1}</div><div class="full-rank-avatar" style="background:${cols[i%cols.length]}22;color:${cols[i%cols.length]}">${n.charAt(0).toUpperCase()}</div><div class="full-rank-details"><div class="full-rank-name">${n}</div><div class="full-rank-sub">${d.loja} · ${d.c} avaliação${d.c!==1?'ões':''}</div></div><div class="full-rank-right"><div class="full-rank-score">${d.avg}%</div><div style="margin-top:3px"><span class="classif-badge ${cl.c}" style="font-size:10px;padding:2px 7px">${cl.e} ${cl.l}</span></div>${i===0?'<div style="margin-top:3px"><span class="medal-badge">🌸 Boas Sensações</span></div>':''}</div></div>`}).join('');
+  } else {
+    const avFiltradas=ma.filter(a=>a.tipo==='avaliacao'||a.tipo==='lider');
+    if(!avFiltradas.length){rEl.innerHTML=`<div style="text-align:center;padding:34px;color:var(--mid)">${emptyMsg}</div>`;return}
+    const sorted=[...avFiltradas].sort((a,b)=>b.pct-a.pct);
+    rEl.innerHTML=sorted.map((a,i)=>{const pc=i===0?'pos-1':i===1?'pos-2':i===2?'pos-3':'pos-other';const cl=getClf(a.pct);return`<div class="full-rank-item" onclick="openMod(${a.id},'${a.tipo==='lider'?'lider':'avaliacao'}')" style="cursor:pointer"><div class="full-rank-pos ${pc}">${i+1}</div><div class="full-rank-avatar" style="background:var(--rose-light);color:var(--rose)">${(a.nome||'?').charAt(0).toUpperCase()}</div><div class="full-rank-details"><div class="full-rank-name">${a.nome||'—'}</div><div class="full-rank-sub">${a.loja} · ${a.cargo||'—'}</div></div><div class="full-rank-right"><div class="full-rank-score">${a.pct}%</div><span class="classif-badge ${cl.c}" style="font-size:10px;padding:2px 7px">${cl.e} ${cl.l}</span></div></div>`}).join('');
+  }
+}
+
+/* ===== LOJA TABS ===== */
 function selVisitaLoja(el,l){document.querySelectorAll('#visitaLojaTabs .loja-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');S.vLoja=l;document.getElementById('fLoja').value=l}
 function selFuncLoja(el,l){document.querySelectorAll('#funcLojaTabs .loja-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');S.fLoja=l;document.getElementById('fFL').value=l}
 
+/* ===== CHECKLIST ===== */
 function buildChk(){
   S.chk={};
   Object.keys(CHK).forEach(sec=>{
@@ -710,6 +1013,7 @@ function buildAtn(){
   });
 }
 
+/* ===== FUNC CRITERIOS ===== */
 function buildFuncCrit(){
   S.fstars={};S.fcomm={};
   const c=document.getElementById('funcCriterios');c.innerHTML='';
@@ -753,6 +1057,7 @@ function updFuncScore(){
 }
 function getClf(pct){return CLFS.find(c=>pct>=c.min)||CLFS[CLFS.length-1]}
 
+/* ===== CANVAS ===== */
 function setupCanvas(id){
   const cv=document.getElementById(id);if(!cv)return;
   const ctx=cv.getContext('2d');let draw=false;sigD[id]=null;
@@ -765,59 +1070,22 @@ function setupCanvas(id){
   cv.ontouchend=()=>{draw=false;sigD[id]=cv.toDataURL()};
 }
 function clearSig(id){const c=document.getElementById(id);if(c)c.getContext('2d').clearRect(0,0,c.width,c.height);sigD[id]=null}
-
 function prevPhoto(inp,pid,idx){
   const f=inp.files[0];if(!f)return;
   const r=new FileReader();r.onload=e=>{const img=document.getElementById(pid);img.src=e.target.result;img.style.display='block';S.photos[idx]=e.target.result};r.readAsDataURL(f);
 }
 
+/* ===== SUBMIT VISITA ===== */
 function submitVisita(){
   const loja=document.getElementById('fLoja').value,data=document.getElementById('fData').value,av=document.getElementById('fAvaliador').value;
   if(!loja||!data||!av){showToast('⚠️ Preencha os dados básicos');return}
-
-  // Snapshot antes de qualquer reset
-  const chkSnap={...S.chk};
-  const atnSnap={...S.atn};
-  const photosSnap=[S.photos[0],S.photos[1]];
-
+  const chkSnap={...S.chk};const atnSnap={...S.atn};const photosSnap=[S.photos[0],S.photos[1]];
   let t=0,m=0;const chks={};
-  Object.keys(CHK).forEach(s=>{
-    chks[s]=[];
-    CHK[s].forEach((it,i)=>{
-      m+=it.p;
-      const v=chkSnap[s+'_'+i];
-      if(v===true)t+=it.p;
-      chks[s].push({l:it.l,p:it.p,v});
-    });
-  });
+  Object.keys(CHK).forEach(s=>{chks[s]=[];CHK[s].forEach((it,i)=>{m+=it.p;const v=chkSnap[s+'_'+i];if(v===true)t+=it.p;chks[s].push({l:it.l,p:it.p,v})})});
   const atns={};
-  ATN.forEach(r=>{
-    m+=r.p;
-    const v=atnSnap[r.id];
-    if(v==='SIM')t+=r.p;
-    else if(v==='PARCIAL')t+=Math.floor(r.p*.5);
-    atns[r.id]={l:r.l,p:r.p,v};
-  });
-
-  const visit={
-    id:Date.now(),tipo:'visita',loja,data,av,
-    vend:document.getElementById('fVendedora').value,
-    score:t,max:m,pct:Math.round((t/m)*100),
-    chks,atns,
-    pos:document.getElementById('fPositivo').value,
-    mel:document.getElementById('fMelhoria').value,
-    res:document.getElementById('fResumo').value,
-    sAv:sigD.sigAv,sVn:sigD.sigVn,
-    pA:photosSnap[0],pD:photosSnap[1]
-  };
-
-  // Salvar PRIMEIRO, resetar DEPOIS
-  S.visits.unshift(visit);
-  sv();
-  resetVF();
-  showPage('historico');
-  renderDash();renderHist();renderRank();
-  showToast('✨ Visita salva!');
+  ATN.forEach(r=>{m+=r.p;const v=atnSnap[r.id];if(v==='SIM')t+=r.p;else if(v==='PARCIAL')t+=Math.floor(r.p*.5);atns[r.id]={l:r.l,p:r.p,v}});
+  const visit={id:Date.now(),tipo:'visita',loja,data,av,vend:document.getElementById('fVendedora').value,score:t,max:m,pct:Math.round((t/m)*100),chks,atns,pos:document.getElementById('fPositivo').value,mel:document.getElementById('fMelhoria').value,res:document.getElementById('fResumo').value,sAv:sigD.sigAv,sVn:sigD.sigVn,pA:photosSnap[0],pD:photosSnap[1]};
+  S.visits.unshift(visit);sv();resetVF();showPage('historico');renderDash();renderHist();renderRank();showToast('✨ Visita salva!');
 }
 function resetVF(){
   document.getElementById('fVendedora').value='';
@@ -826,106 +1094,65 @@ function resetVF(){
   S.photos=[null,null];buildChk();buildAtn();clearSig('sigAv');clearSig('sigVn');
 }
 
+/* ===== SUBMIT AVALIAÇÃO ===== */
 function submitAval(){
   const nome=document.getElementById('fFN').value,loja=document.getElementById('fFL').value,data=document.getElementById('fFD').value;
   if(!nome||!loja||!data){showToast('⚠️ Preencha nome, loja e data');return}
-
-  // Capturar snapshot das notas e comentários ANTES de qualquer reset
-  const starsSnap={...S.fstars};
-  const commSnap={...S.fcomm};
-
+  const starsSnap={...S.fstars};const commSnap={...S.fcomm};
+  const domStars={};
+  document.querySelectorAll('#funcCriterios .star-row').forEach(row=>{
+    const lbl=row.querySelector('.star-score-lbl');const labelEl=row.querySelector('.star-label-text');
+    if(!labelEl||!lbl)return;
+    const nota=parseInt(lbl.textContent)||0;const item=labelEl.textContent.trim();
+    let el=row.previousElementSibling;
+    while(el&&!el.classList.contains('cat-header'))el=el.previousElementSibling;
+    if(el){const cat=el.textContent.trim();domStars[cat+'|'+item]=nota;}
+  });
   let t=0,cnt=0;const crit={};
   Object.entries(FCAT).forEach(([cat,items])=>{
     crit[cat]=[];
     items.forEach(item=>{
-      const k=cat+'|'+item;
-      // Lê do snapshot — imune a resets
-      const n=starsSnap[k]||0;
-      const c=commSnap[k]||'';
-      t+=n;cnt++;
-      crit[cat].push({l:item,n,c});
+      const k=cat+'|'+item;const n=domStars[k]!==undefined?domStars[k]:(starsSnap[k]||0);const c=commSnap[k]||'';
+      t+=n;cnt++;crit[cat].push({l:item,n,c});
     });
   });
-
   const m=cnt*5,pct=Math.round((t/m)*100),cl=getClf(pct);
-
-  // Capturar todos os campos antes do reset
-  const aval={
-    id:Date.now(),tipo:'avaliacao',loja,data,nome,
-    cargo:document.getElementById('fFC').value,
-    av:document.getElementById('fFA').value,
-    periodo:document.getElementById('fFP').value,
-    score:t,max:m,pct,clf:cl.l,crit,
-    pm:{
-      obj:document.getElementById('pmObj').value,
-      acao:document.getElementById('pmAcao').value,
-      prazo:document.getElementById('pmPrazo').value,
-      status:document.getElementById('pmStatus').value
-    },
-    pos:document.getElementById('fFFpos').value,
-    dev:document.getElementById('fFFdev').value,
-    msg:document.getElementById('fFFmsg').value,
-    sAv:sigD.sigFAv,
-    sFn:sigD.sigFFn,
-    acordos:document.getElementById('fFAcordos').value,
-    sigAcAv:sigD.sigAcAv,
-    sigAcFn:sigD.sigAcFn,
-    pdi:window._pdiObj?JSON.parse(JSON.stringify(window._pdiObj)):null
-  };
-
-  // Salvar PRIMEIRO, resetar DEPOIS
-  S.avals.unshift(aval);
-  sv();
-  resetAF();
-  showPage('historico');
-  renderDash();renderHist();renderRank();
-  showToast('⭐ Avaliação salva!');
+  const aval={id:Date.now(),tipo:'avaliacao',loja,data,nome,cargo:document.getElementById('fFC').value,av:document.getElementById('fFA').value,periodo:document.getElementById('fFP').value,score:t,max:m,pct,clf:cl.l,crit,pm:{obj:document.getElementById('pmObj').value,acao:document.getElementById('pmAcao').value,prazo:document.getElementById('pmPrazo').value,status:document.getElementById('pmStatus').value},pos:document.getElementById('fFFpos').value,dev:document.getElementById('fFFdev').value,msg:document.getElementById('fFFmsg').value,sAv:sigD.sigFAv,sFn:sigD.sigFFn,acordos:document.getElementById('fFAcordos').value,sigAcAv:sigD.sigAcAv,sigAcFn:sigD.sigAcFn,pdi:window._pdiObj?JSON.parse(JSON.stringify(window._pdiObj)):null};
+  S.avals.unshift(aval);sv();resetAF();showPage('historico');renderDash();renderHist();renderRank();showToast('⭐ Avaliação salva! '+aval.pct+'% · '+aval.score+'/'+aval.max+' pts');
 }
 function resetAF(){
   ['fFN','fFC','fFP','pmObj','pmAcao','pmPrazo','fFFpos','fFFdev','fFFmsg','fFAcordos'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''});
-  document.getElementById('pmStatus').value='';buildFuncCrit();clearSig('sigFAv');clearSig('sigFFn');clearSig('sigAcAv');clearSig('sigAcFn');window._pdiGerado='';window._pdiObj=null;document.getElementById('pdiSection').style.display='none';
+  document.getElementById('pmStatus').value='';buildFuncCrit();clearSig('sigFAv');clearSig('sigFFn');clearSig('sigAcAv');clearSig('sigAcFn');window._pdiGerado='';window._pdiObj=null;document.getElementById('pdiContent').innerHTML='Clique em "Gerar PDI" para criar um plano personalizado baseado nas notas desta avaliação.';document.getElementById('pdiLoadingBadge').textContent='';document.getElementById('btnGerarPDI').textContent='✨ Gerar PDI';document.getElementById('btnGerarPDI').disabled=false;
 }
 
-function renderDash(){
-  const now=new Date(),mo=now.getMonth(),yr=now.getFullYear();
-  const mv=S.visits.filter(v=>{const d=new Date(v.data);return d.getMonth()===mo&&d.getFullYear()===yr});
-  const ma=S.avals.filter(a=>{const d=new Date(a.data);return d.getMonth()===mo&&d.getFullYear()===yr});
-  document.getElementById('statVisitas').textContent=mv.length;
-  document.getElementById('statAvaliacoes').textContent=ma.length;
-  const ls={};mv.forEach(v=>{if(!ls[v.loja])ls[v.loja]={t:0,c:0};ls[v.loja].t+=v.pct;ls[v.loja].c++});
-  const sl=Object.entries(ls).sort((a,b)=>(b[1].t/b[1].c)-(a[1].t/a[1].c));
-  if(sl.length>0)document.getElementById('statMelhorLoja').textContent=sl[0][0].split(' ').slice(-1)[0];
-  const fs={};ma.forEach(a=>{if(!fs[a.nome])fs[a.nome]={t:0,c:0};fs[a.nome].t+=a.pct;fs[a.nome].c++});
-  const sf=Object.entries(fs).sort((a,b)=>(b[1].t/b[1].c)-(a[1].t/a[1].c));
-  if(sf.length>0)document.getElementById('statMelhorFunc').textContent=sf[0][0].split(' ')[0];
-  document.getElementById('dashTopLojas').innerHTML=sl.length===0?'<div style="color:var(--mid);font-size:12px;text-align:center;padding:14px">Nenhuma visita este mês</div>':sl.slice(0,5).map((l,i)=>{const avg=Math.round(l[1].t/l[1].c);return`<div class="rank-item"><div class="rank-num ${i<3?'rank-'+(i+1):'rank-other'}">${i+1}</div><div class="rank-info"><div class="rank-name">${l[0]}</div><div class="rank-bar"><div class="rank-fill" style="width:${avg}%"></div></div></div><div class="rank-score">${avg}%</div></div>`}).join('');
-  document.getElementById('dashTopFunc').innerHTML=sf.length===0?'<div style="color:var(--mid);font-size:12px;text-align:center;padding:14px">Nenhuma avaliação este mês</div>':sf.slice(0,5).map((f,i)=>{const avg=Math.round(f[1].t/f[1].c);return`<div class="rank-item"><div class="rank-num ${i<3?'rank-'+(i+1):'rank-other'}">${i+1}</div><div class="rank-info"><div class="rank-name">${f[0]}</div><div class="rank-bar"><div class="rank-fill" style="width:${avg}%"></div></div></div><div class="rank-score">${avg}%</div></div>`}).join('');
-}
-
+/* ===== HISTORICO ===== */
 function renderHist(){
   const ft=document.getElementById('filterTipo').value,fl=document.getElementById('filterLoja').value;
-  let all=[...S.visits.map(v=>({...v,_t:'visita'})),...S.avals.map(a=>({...a,_t:'avaliacao'}))].sort((a,b)=>b.id-a.id);
+  let all=[...S.visits.map(v=>({...v,_t:'visita'})),...S.avals.map(a=>({...a,_t:a.tipo||'avaliacao'}))].sort((a,b)=>b.id-a.id);
   if(ft)all=all.filter(r=>r._t===ft);
   if(fl)all=all.filter(r=>r.loja===fl);
   const list=document.getElementById('visitList'),empty=document.getElementById('emptyHist');
   if(all.length===0){list.innerHTML='';empty.style.display='block';return}
   empty.style.display='none';
   list.innerHTML=all.map(r=>{
-    const isV=r._t==='visita';const sc=r.pct>=80?'#5A8A6A':r.pct>=60?'#C9A84C':'#C0392B';
+    const isV=r._t==='visita';const isL=r._t==='lider';const isFb=r._t==='feedback';
+    const sc=r.pct>=80?'#5A8A6A':r.pct>=60?'#C9A84C':'#C0392B';
     const title=isV?r.loja:`${r.nome||'—'} · ${r.loja}`;
-    const sub=isV?`${new Date(r.data).toLocaleDateString('pt-BR')} · ${r.av} · ${r.vend||'—'}`:`${new Date(r.data).toLocaleDateString('pt-BR')} · ${r.cargo||'—'} · ${r.periodo||'—'}`;
-    const clf=isV?'':getClf(r.pct);
+    const sub=isV?`${new Date(r.data).toLocaleDateString('pt-BR')} · ${r.av} · ${r.vend||'—'}`:isFb?`${new Date(r.data).toLocaleDateString('pt-BR')} · ${r.tipoLabel||'Feedback'} · ${r.av}`:`${new Date(r.data).toLocaleDateString('pt-BR')} · ${r.cargo||'—'} · ${r.periodo||'—'}`;
+    const clf=isV?'':getClf(r.pct||0);
+    const scoreCircle=isFb?`<div class="visit-score-circle" style="background:linear-gradient(135deg,var(--blue),#3A5A8A)">💬</div>`:
+      `<div class="visit-score-circle" style="background:linear-gradient(135deg,${sc},${sc}BB)">${r.pct||0}%</div>`;
     return`<div class="visit-card" onclick="openMod(${r.id},'${r._t}')">
-      <div class="visit-score-circle" style="background:linear-gradient(135deg,${sc},${sc}BB)">${r.pct}%</div>
+      ${scoreCircle}
       <div class="visit-info">
-        <div class="visit-store">${isV?'🏪':'👩'} ${title}</div>
+        <div class="visit-store">${isV?'🏪':isL?'👑':isFb?'💬':'👩'} ${title}</div>
         <div class="visit-meta">${sub}</div>
         <div class="visit-badges">
-          <span class="tag">${isV?'visita':'avaliação'}</span>
-          <span class="tag">${r.score}/${r.max}pts</span>
-          ${r.pct>=80?'<span class="tag green">✅ Excelente</span>':r.pct>=60?'<span class="tag">🟡 Regular</span>':'<span class="tag red">⚠️ Atenção</span>'}
-          ${!isV?`<span class="tag blue">${clf.e} ${clf.l}</span>`:''}
-          ${(!isV&&r.pdi&&r.pdi.prioridades&&r.pdi.prioridades.length)?'<span class="tag" style="background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.3);color:var(--gold-dark)">🚀 PDI</span>':''}
+          <span class="tag">${isV?'visita':isFb?'feedback':isL?'líder':'avaliação'}</span>
+          ${!isFb?`<span class="tag">${r.score||0}/${r.max||0}pts</span>`:''}
+          ${!isFb?(r.pct>=80?'<span class="tag green">✅ Excelente</span>':r.pct>=60?'<span class="tag">🟡 Regular</span>':'<span class="tag red">⚠️ Atenção</span>'):''}
+          ${(!isV&&!isFb)?`<span class="tag blue">${clf.e} ${clf.l}</span>`:''}
+          ${(!isV&&!isFb&&r.pdi&&r.pdi.prioridades&&r.pdi.prioridades.length)?'<span class="tag" style="background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.3);color:var(--gold-dark)">🚀 PDI</span>':''}
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:5px">
@@ -936,6 +1163,7 @@ function renderHist(){
   }).join('');
 }
 
+/* ===== MODAL ===== */
 function openMod(id,tipo){
   let html='';
   if(tipo==='visita'){
@@ -957,10 +1185,25 @@ function openMod(id,tipo){
     if(v.mel)html+=`<div class="report-section"><h3>⚠️ Ponto de Melhoria</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(192,57,43,.08);border-radius:7px;border:1px solid rgba(192,57,43,.2)">${v.mel}</p></div>`;
     if(v.pA||v.pD){html+=`<div class="report-section"><h3>📷 Fotos</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">`;if(v.pA)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--gold);margin-bottom:3px">ANTES</div><img src="${v.pA}" style="width:100%;border-radius:7px;max-height:140px;object-fit:cover"/></div>`;if(v.pD)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--green);margin-bottom:3px">DEPOIS</div><img src="${v.pD}" style="width:100%;border-radius:7px;max-height:140px;object-fit:cover"/></div>`;html+=`</div></div>`}
     if(v.sAv||v.sVn){html+=`<div class="report-section"><h3>✍️ Assinaturas</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">`;if(v.sAv)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">AVALIADOR(A)</div><img src="${v.sAv}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;if(v.sVn)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">VENDEDORA</div><img src="${v.sVn}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;html+=`</div></div>`}
+  } else if(tipo==='feedback'){
+    const fb=S.avals.find(x=>x.id===id);if(!fb)return;
+    html=`<h2 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:4px">💬 ${fb.nome}</h2>
+    <p style="color:var(--mid);font-size:11px;margin-bottom:6px">${fb.loja} · ${fb.cargo||'—'} · ${new Date(fb.data).toLocaleDateString('pt-BR')}</p>
+    <div style="margin-bottom:14px"><span class="tag blue">${fb.tipoLabel||'Feedback'}</span></div>`;
+    if(fb.contexto)html+=`<div class="report-section"><h3>📌 Contexto</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:var(--white);border-radius:7px;border:1px solid #EDE8E0">${fb.contexto}</p></div>`;
+    if(fb.situacao)html+=`<div class="report-section"><h3>📍 Situação</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:var(--white);border-radius:7px;border:1px solid #EDE8E0">${fb.situacao}</p></div>`;
+    if(fb.comportamento)html+=`<div class="report-section"><h3>👁️ Comportamento Observado</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(192,57,43,.06);border-radius:7px;border:1px solid rgba(192,57,43,.2)">${fb.comportamento}</p></div>`;
+    if(fb.impacto)html+=`<div class="report-section"><h3>⚡ Impacto Gerado</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(90,122,154,.06);border-radius:7px;border:1px solid rgba(90,122,154,.2)">${fb.impacto}</p></div>`;
+    if(fb.positivo)html+=`<div class="report-section"><h3>✅ Pontos Positivos</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(90,138,106,.08);border-radius:7px;border:1px solid rgba(90,138,106,.2)">${fb.positivo}</p></div>`;
+    if(fb.desenvolver)html+=`<div class="report-section"><h3>🌱 O que Desenvolver</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(201,168,76,.08);border-radius:7px;border:1px solid rgba(201,168,76,.2)">${fb.desenvolver}</p></div>`;
+    if(fb.acordos)html+=`<div class="report-section"><h3>🤝 Acordos e Próximos Passos</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(201,168,76,.08);border-radius:7px;border:1px solid rgba(201,168,76,.25);border-left:3px solid var(--gold)">${fb.acordos}</p>${fb.prazo?`<div style="margin-top:6px"><span class="tag">⏱️ Revisão: ${fb.prazo}</span></div>`:''}</div>`;
+    if(fb.sAv||fb.sFn){html+=`<div class="report-section"><h3>✍️ Assinaturas</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">`;if(fb.sAv)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">AVALIADOR(A)</div><img src="${fb.sAv}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;if(fb.sFn)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">FUNCIONÁRIA — CIENTE</div><img src="${fb.sFn}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;html+=`</div></div>`}
   } else {
+    // avaliacao or lider
     const a=S.avals.find(x=>x.id===id);if(!a)return;
-    const cl=getClf(a.pct);
-    html=`<h2 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:4px">👩 ${a.nome}</h2><p style="color:var(--mid);font-size:11px;margin-bottom:6px">${a.loja} · ${a.cargo||'—'} · ${new Date(a.data).toLocaleDateString('pt-BR')}</p>
+    const cl=getClf(a.pct||0);
+    const isLider=a.tipo==='lider';
+    html=`<h2 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:4px">${isLider?'👑':'👩'} ${a.nome}</h2><p style="color:var(--mid);font-size:11px;margin-bottom:6px">${a.loja} · ${a.cargo||'—'} · ${new Date(a.data).toLocaleDateString('pt-BR')}</p>
     <div style="margin-bottom:16px"><span class="classif-badge ${cl.c}">${cl.e} ${cl.l}</span></div>
     <div style="display:flex;gap:12px;margin-bottom:18px;flex-wrap:wrap">
       <div style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:12px;padding:14px 22px;text-align:center;flex:1"><div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--dark)">${a.pct}%</div><div style="color:rgba(26,20,16,.6);font-size:11px">Desempenho</div></div>
@@ -972,14 +1215,14 @@ function openMod(id,tipo){
       html+=`</div></div>`;
     });
     const pm=a.pm||{};
-    if(pm.obj||pm.acao)html+=`<div class="report-section"><h3>📈 Plano de Melhoria</h3><div style="background:var(--white);border:1px solid #EDE8E0;border-radius:9px;padding:12px;font-size:12px">${pm.obj?`<div><strong>Objetivo:</strong> ${pm.obj}</div>`:''}${pm.acao?`<div style="margin-top:4px"><strong>Ação:</strong> ${pm.acao}</div>`:''}${pm.prazo||pm.status?`<div style="margin-top:6px;display:flex;gap:6px"><span class="tag">⏱️ ${pm.prazo||'—'}</span><span class="tag blue">${pm.status||'—'}</span></div>`:''}</div></div>`;
+    if(pm.obj||pm.acao)html+=`<div class="report-section"><h3>📈 Plano de ${isLider?'Desenvolvimento':'Melhoria'}</h3><div style="background:var(--white);border:1px solid #EDE8E0;border-radius:9px;padding:12px;font-size:12px">${pm.obj?`<div><strong>Objetivo:</strong> ${pm.obj}</div>`:''}${pm.acao?`<div style="margin-top:4px"><strong>Ação:</strong> ${pm.acao}</div>`:''}${pm.prazo||pm.status?`<div style="margin-top:6px;display:flex;gap:6px"><span class="tag">⏱️ ${pm.prazo||'—'}</span><span class="tag blue">${pm.status||'—'}</span></div>`:''}</div></div>`;
     if(a.pos)html+=`<div class="report-section"><h3>👍 Pontos Fortes</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(90,138,106,.08);border-radius:7px;border:1px solid rgba(90,138,106,.2)">${a.pos}</p></div>`;
     if(a.dev)html+=`<div class="report-section"><h3>⚠️ Desenvolvimento</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(192,57,43,.08);border-radius:7px;border:1px solid rgba(192,57,43,.2)">${a.dev}</p></div>`;
-    if(a.pdi){html+=`<div class="report-section"><h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;border-bottom:2px solid var(--gold-light);padding-bottom:6px;margin-bottom:12px">🚀 PDI — Plano de Desenvolvimento Individual</h3>`+renderPDI(a.pdi)+`</div>`;}
+    if(a.pdi)html+=`<div class="report-section"><h3 style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;border-bottom:2px solid var(--gold-light);padding-bottom:6px;margin-bottom:12px">🚀 PDI — Plano de Desenvolvimento${isLider?' do Líder':' Individual'}</h3>`+renderPDI(a.pdi)+`</div>`;
     if(a.msg)html+=`<div class="report-section"><h3>💌 Mensagem</h3><p style="font-size:12px;font-style:italic;line-height:1.6;padding:9px;background:rgba(201,168,76,.08);border-radius:7px;border:1px solid rgba(201,168,76,.2)">"${a.msg}"</p></div>`;
     if(a.acordos)html+=`<div class="report-section"><h3>📝 Contrato de Acordos</h3><p style="font-size:12px;line-height:1.6;padding:9px;background:rgba(201,168,76,.08);border-radius:7px;border:1px solid rgba(201,168,76,.2)">${a.acordos}</p></div>`;
-    if(a.sAv||a.sFn){html+=`<div class="report-section"><h3>✍️ Assinaturas</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">`;if(a.sAv)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">AVALIADOR(A)</div><img src="${a.sAv}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;if(a.sFn)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">FUNCIONÁRIA</div><img src="${a.sFn}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;html+=`</div></div>`;
-    if(a.sigAcAv||a.sigAcFn){html+=`<div class="report-section"><h3>✍️ Assinaturas do Contrato</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">`;if(a.sigAcAv)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">AVALIADOR(A) — TESTEMUNHA</div><img src="${a.sigAcAv}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;if(a.sigAcFn)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">FUNCIONÁRIA — CIENTE</div><img src="${a.sigAcFn}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;html+=`</div></div>`}}
+    if(a.sAv||a.sFn){html+=`<div class="report-section"><h3>✍️ Assinaturas</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">`;if(a.sAv)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">AVALIADOR(A)</div><img src="${a.sAv}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;if(a.sFn)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">${isLider?'LÍDER':'FUNCIONÁRIA'}</div><img src="${a.sFn}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;html+=`</div></div>`;}
+    if(a.sigAcAv||a.sigAcFn){html+=`<div class="report-section"><h3>✍️ Assinaturas do Contrato</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">`;if(a.sigAcAv)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">AVALIADOR(A) — TESTEMUNHA</div><img src="${a.sigAcAv}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;if(a.sigAcFn)html+=`<div><div style="font-size:9px;font-weight:700;color:var(--mid);margin-bottom:3px">${isLider?'LÍDER':'FUNCIONÁRIA'} — CIENTE</div><img src="${a.sigAcFn}" style="width:100%;border:1px solid #EDE8E0;border-radius:7px;background:white"/></div>`;html+=`</div></div>`}
   }
   html+=`<div style="display:flex;gap:8px;margin-top:18px"><button class="btn-submit" style="padding:12px" onclick="expRec(${id},'${tipo}')">📄 Exportar</button><button class="btn-sm" style="padding:12px 14px" onclick="delRec(${id},'${tipo}')">🗑️ Excluir</button></div>`;
   document.getElementById('modalContent').innerHTML=html;document.getElementById('visitModal').classList.add('open');
@@ -993,6 +1236,7 @@ function delRec(id,tipo){
   sv();closeModal();renderHist();renderDash();renderRank();showToast('Registro excluído');
 }
 
+/* ===== EXPORT ===== */
 function expRec(id,tipo){
   if(tipo==='visita'){
     const v=S.visits.find(x=>x.id===id);if(!v)return;
@@ -1007,50 +1251,26 @@ function expRec(id,tipo){
     dlHTML(h,`Visita_${v.loja.replace(/ /g,'_')}_${v.data}.html`);
   } else {
     const a=S.avals.find(x=>x.id===id);if(!a)return;
-    const cl=getClf(a.pct);
-    let h=buildEH('Avaliação de Funcionária',a.loja,a.data,a.pct,a.score,a.max);
-    h+=`<p><strong>Funcionária:</strong> ${a.nome} &nbsp;|&nbsp; <strong>Cargo:</strong> ${a.cargo||'—'} &nbsp;|&nbsp; <strong>Período:</strong> ${a.periodo||'—'}</p><p style="margin-top:6px"><strong>Classificação:</strong> <span style="color:#C9A84C;font-weight:700">${cl.e} ${cl.l}</span></p><br>`;
+    const cl=getClf(a.pct||0);
+    const isLider=a.tipo==='lider';
+    let h=buildEH(isLider?'Avaliação de Líder':'Avaliação de Funcionária',a.loja,a.data,a.pct,a.score,a.max);
+    h+=`<p><strong>${isLider?'Líder':'Funcionária'}:</strong> ${a.nome} &nbsp;|&nbsp; <strong>Cargo:</strong> ${a.cargo||'—'} &nbsp;|&nbsp; <strong>Período:</strong> ${a.periodo||'—'}</p><p style="margin-top:6px"><strong>Classificação:</strong> <span style="color:#C9A84C;font-weight:700">${cl.e} ${cl.l}</span></p><br>`;
     Object.entries(a.crit||{}).forEach(([cat,items])=>{h+=`<h2>${cat}</h2><div class="cg">`;items.forEach(i=>{const s='★'.repeat(i.n)+'☆'.repeat(5-i.n);h+=`<div class="cr ${i.n>=4?'ok':i.n<=2?'nok':''}"><strong>${i.l}</strong> — <span style="color:#C9A84C">${s} (${i.n}/5)</span>${i.c?`<br><small>${i.c}</small>`:''}</div>`});h+=`</div>`});
-    const pm=a.pm||{};
-    if(pm.obj||pm.acao){h+=`<h2>📈 Plano de Melhoria</h2><div class="nb">`;if(pm.obj)h+=`<strong>Objetivo:</strong> ${pm.obj}<br>`;if(pm.acao)h+=`<strong>Ação:</strong> ${pm.acao}<br>`;if(pm.prazo)h+=`<strong>Prazo:</strong> ${pm.prazo} | <strong>Status:</strong> ${pm.status||'—'}`;h+=`</div>`}
     if(a.acordos)h+=`<h2>📝 Contrato de Acordos</h2><div class="nb" style="border-left:4px solid #C9A84C">${a.acordos}</div>`;
     if(a.pos)h+=`<h2>👍 Pontos Fortes</h2><div class="nb">${a.pos}</div>`;
     if(a.dev)h+=`<h2>⚠️ Desenvolvimento</h2><div class="nb">${a.dev}</div>`;
     if(a.pdi&&a.pdi.prioridades&&a.pdi.prioridades.length){
-    h+=`<h2>🚀 PDI — Plano de Desenvolvimento Individual</h2>`;
-    h+=`<div class="nb"><strong>Classificação:</strong> ${a.pdi.classificacao} (${a.pdi.pct}%)</div>`;
-    h+=`<p style="font-size:12px;line-height:1.6;margin-bottom:10px">${a.pdi.diagnostico}</p>`;
-    if(a.pdi.fortes&&a.pdi.fortes.length){
-      h+=`<h2>💪 Forças a Potencializar</h2><div class="cg">`;
-      a.pdi.fortes.forEach(f=>{h+=`<div class="cr ok">✨ ${f}</div>`});
-      h+=`</div>`;
+      h+=`<h2>🚀 PDI — Plano de Desenvolvimento${isLider?' do Líder':' Individual'}</h2>`;
+      h+=`<div class="nb"><strong>Classificação:</strong> ${a.pdi.classificacao} (${a.pdi.pct}%)</div>`;
+      h+=`<p style="font-size:12px;line-height:1.6;margin-bottom:10px">${a.pdi.diagnostico}</p>`;
+      if(a.pdi.fortes&&a.pdi.fortes.length){h+=`<h2>💪 Forças</h2><div class="cg">`;a.pdi.fortes.forEach(f=>{h+=`<div class="cr ok">✨ ${f}</div>`});h+=`</div>`;}
+      h+=`<h2>🎯 Ações Prioritárias</h2>`;
+      a.pdi.prioridades.forEach((p,i)=>{h+=`<div class="nb" style="border-left:4px solid #C9A84C;margin-bottom:10px"><strong>${i+1}. ${p.item}</strong> — Nota ${p.nota}/5 · ${p.prazo}<br>📌 ${p.acao}<br>📚 ${p.recurso}<br>📈 ${p.ind}</div>`});
     }
-    h+=`<h2>🎯 Ações Prioritárias</h2>`;
-    a.pdi.prioridades.forEach((p,i)=>{
-      h+=`<div class="nb" style="border-left:4px solid #C9A84C;margin-bottom:10px">`;
-      h+=`<strong>${i+1}. ${p.item}</strong> — Nota ${p.nota}/5 · ${p.prazo}<br>`;
-      h+=`📌 ${p.acao}<br>`;
-      h+=`📚 ${p.recurso}<br>`;
-      h+=`📈 Indicador: ${p.ind}`;
-      h+=`</div>`;
-    });
-    if(a.pdi.plano){
-      h+=`<h2>🗓️ Plano 30/60/90 dias</h2><div class="cg">`;
-      [['d30','30 dias'],['d60','60 dias'],['d90','90 dias']].forEach(([k,label])=>{
-        const p=a.pdi.plano[k];if(!p)return;
-        h+=`<div class="cr"><strong>${label} · ${p.foco}</strong><br>`;
-        p.acoes.forEach(ac=>{h+=`• ${ac}<br>`});
-        h+=`<em>${p.entrega}</em></div>`;
-      });
-      h+=`</div>`;
-    }
-    if(a.pdi.acordo)h+=`<div class="nb">🤝 <strong>Acordo:</strong> ${a.pdi.acordo}</div>`;
-    if(a.pdi.msg)h+=`<div class="nb" style="font-style:italic;background:#1A1410;color:#E8D5A3;border:none">"${a.pdi.msg}"</div>`;
-  }
-  if(a.msg)h+=\`<h2>💌 Mensagem</h2><div class="nb" style="font-style:italic">"\${a.msg}"</div>\`;
-    if(a.sigAcAv||a.sigAcFn){h+=`<h2>✍️ Assinaturas do Contrato de Acordos</h2><div class="sa">`;if(a.sigAcAv)h+=`<div class="sb2"><div class="sl">Avaliador(a) — Testemunha</div><img class="sig" src="${a.sigAcAv}"/></div>`;if(a.sigAcFn)h+=`<div class="sb2"><div class="sl">Funcionária — Ciente e de acordo</div><img class="sig" src="${a.sigAcFn}"/></div>`;h+=`</div>`}
+    if(a.msg)h+=`<h2>💌 Mensagem</h2><div class="nb" style="font-style:italic">"${a.msg}"</div>`;
+    if(a.sigAcAv||a.sigAcFn){h+=`<h2>✍️ Assinaturas do Contrato</h2><div class="sa">`;if(a.sigAcAv)h+=`<div class="sb2"><div class="sl">Avaliador(a)</div><img class="sig" src="${a.sigAcAv}"/></div>`;if(a.sigAcFn)h+=`<div class="sb2"><div class="sl">${isLider?'Líder':'Funcionária'}</div><img class="sig" src="${a.sigAcFn}"/></div>`;h+=`</div>`}
     h+=buildEF(null,null,a.sAv,a.sFn,a.av,a.nome);
-    dlHTML(h,`Avaliacao_${a.nome.replace(/ /g,'_')}_${a.data}.html`);
+    dlHTML(h,`${isLider?'Lider':'Avaliacao'}_${(a.nome||'func').replace(/ /g,'_')}_${a.data}.html`);
   }
 }
 function buildEH(tipo,loja,data,pct,score,max){
@@ -1068,405 +1288,228 @@ function buildEF(pA,pD,sA,sB,nA,nB){
 }
 function dlHTML(html,fn){const b=new Blob([html],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=fn;a.click();showToast('📄 Exportado!')}
 
-let curMon=new Date();
-function changeMonth(d){curMon=new Date(curMon.getFullYear(),curMon.getMonth()+d,1);document.getElementById('monthDisplay').textContent=curMon.toLocaleDateString('pt-BR',{month:'long',year:'numeric'}).replace(/^\w/,c=>c.toUpperCase());renderRank()}
-function switchRankTab(tab,el){S.rTab=tab;document.querySelectorAll('.rtab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderRank()}
-
-function renderRank(){
-  const mo=curMon.getMonth(),yr=curMon.getFullYear();
-  const mv=S.visits.filter(v=>{const d=new Date(v.data);return d.getMonth()===mo&&d.getFullYear()===yr});
-  const ma=S.avals.filter(a=>{const d=new Date(a.data);return d.getMonth()===mo&&d.getFullYear()===yr});
-  const ls=getLS(mv),fs=getFS(ma);
-  const sl=Object.entries(ls).sort((a,b)=>b[1].avg-a[1].avg);
-  const sf=Object.entries(fs).sort((a,b)=>b[1].avg-a[1].avg);
-  const win={'bs':sf[0]?{n:sf[0][0],s:'Melhor atendimento'}:null,'op':sl[0]?{n:sl[0][0],s:sl[0][1].avg+'% média'}:null,'li':sl[0]?{n:sl[0][0],s:'Limpeza exemplar'}:null,'ve':sf[0]?{n:sf[0][0],s:sf[0][1].avg+'% média'}:null,'mb':sl[0]?{n:sl[0][0],s:'Metas em dia'}:null,'va':sl[0]?{n:sl[0][0],s:'Visual impecável'}:null};
-  document.getElementById('medalsShowcase').innerHTML=MEDALS.map(m=>{const w=win[m.id];return`<div class="medal-card"><div class="medal-emoji">${m.e}</div><div class="medal-title">${m.t}</div><div class="medal-desc">${m.d}</div>${w?`<div class="medal-winner">${w.n}</div><div class="medal-winner-store">${w.s}</div>`:'<div class="medal-winner" style="color:var(--light)">—</div>'}</div>`}).join('');
-  const rEl=document.getElementById('fullRankingList');
-  const cm={};LOJAS.forEach((l,i)=>cm[l]=LCOLS[i]);
-  if(S.rTab==='lojas'){
-    if(!sl.length){rEl.innerHTML='<div style="text-align:center;padding:34px;color:var(--mid)">Nenhuma visita neste mês</div>';return}
-    rEl.innerHTML=sl.map((item,i)=>{const[l,d]=item;const pc=i===0?'pos-1':i===1?'pos-2':i===2?'pos-3':'pos-other';return`<div class="full-rank-item"><div class="full-rank-pos ${pc}">${i+1}</div><div class="full-rank-avatar" style="background:${cm[l]||'#C9A84C'}22;color:${cm[l]||'#C9A84C'}">${l.charAt(0)}</div><div class="full-rank-details"><div class="full-rank-name">${l}</div><div class="full-rank-sub">${d.c} visita${d.c!==1?'s':''}</div></div><div class="full-rank-right"><div class="full-rank-score">${d.avg}%</div>${i===0?'<div style="margin-top:3px"><span class="medal-badge">✨ Ouro Puro</span></div>':''}</div></div>`}).join('');
-  } else if(S.rTab==='funcionarias'){
-    if(!sf.length){rEl.innerHTML='<div style="text-align:center;padding:34px;color:var(--mid)">Nenhuma avaliação neste mês</div>';return}
-    const cols=['#C9A84C','#D4847A','#7A9DC9','#84C9A8','#C97AC4'];
-    rEl.innerHTML=sf.map((item,i)=>{const[n,d]=item;const pc=i===0?'pos-1':i===1?'pos-2':i===2?'pos-3':'pos-other';const cl=getClf(d.avg);return`<div class="full-rank-item"><div class="full-rank-pos ${pc}">${i+1}</div><div class="full-rank-avatar" style="background:${cols[i%cols.length]}22;color:${cols[i%cols.length]}">${n.charAt(0).toUpperCase()}</div><div class="full-rank-details"><div class="full-rank-name">${n}</div><div class="full-rank-sub">${d.loja} · ${d.c} avaliação${d.c!==1?'ões':''}</div></div><div class="full-rank-right"><div class="full-rank-score">${d.avg}%</div><div style="margin-top:3px"><span class="classif-badge ${cl.c}" style="font-size:10px;padding:2px 7px">${cl.e} ${cl.l}</span></div>${i===0?'<div style="margin-top:3px"><span class="medal-badge">🌸 Boas Sensações</span></div>':''}</div></div>`}).join('');
-  } else {
-    if(!ma.length){rEl.innerHTML='<div style="text-align:center;padding:34px;color:var(--mid)">Nenhuma avaliação neste mês</div>';return}
-    const sorted=[...ma].sort((a,b)=>b.pct-a.pct);
-    rEl.innerHTML=sorted.map((a,i)=>{const pc=i===0?'pos-1':i===1?'pos-2':i===2?'pos-3':'pos-other';const cl=getClf(a.pct);return`<div class="full-rank-item" onclick="openMod(${a.id},'avaliacao')" style="cursor:pointer"><div class="full-rank-pos ${pc}">${i+1}</div><div class="full-rank-avatar" style="background:var(--rose-light);color:var(--rose)">${a.nome.charAt(0).toUpperCase()}</div><div class="full-rank-details"><div class="full-rank-name">${a.nome}</div><div class="full-rank-sub">${a.loja} · ${a.cargo||'—'}</div></div><div class="full-rank-right"><div class="full-rank-score">${a.pct}%</div><span class="classif-badge ${cl.c}" style="font-size:10px;padding:2px 7px">${cl.e} ${cl.l}</span></div></div>`}).join('');
-  }
-}
+/* ===== HELPERS ===== */
 function getLS(v){const s={};v.forEach(x=>{if(!x.loja)return;if(!s[x.loja])s[x.loja]={t:0,ts:0,c:0};s[x.loja].t+=x.pct;s[x.loja].ts+=x.score;s[x.loja].c++});Object.keys(s).forEach(k=>s[k].avg=Math.round(s[k].t/s[k].c));return s}
-function getFS(a){const s={};a.forEach(x=>{if(!x.nome)return;if(!s[x.nome])s[x.nome]={t:0,c:0,loja:x.loja};s[x.nome].t+=x.pct;s[x.nome].c++});Object.keys(s).forEach(k=>s[k].avg=Math.round(s[k].t/s[k].c));return s}
+function getFS(a){const s={};a.forEach(x=>{if(!x.nome)return;if(!s[x.nome])s[x.nome]={t:0,c:0,loja:x.loja};s[x.nome].t+=(x.pct||0);s[x.nome].c++});Object.keys(s).forEach(k=>s[k].avg=Math.round(s[k].t/s[k].c));return s}
 
+/* ===== BACKUP / RESTORE ===== */
+function backupData(){
+  const data={visits:S.visits,avals:S.avals,exportedAt:new Date().toISOString(),version:'1.1'};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');const date=new Date().toLocaleDateString('pt-BR').replace(/\//g,'-');
+  a.href=URL.createObjectURL(blob);a.download='avatim_backup_'+date+'.json';a.click();showToast('💾 Backup salvo!');
+}
+function restoreData(input){
+  const file=input.files[0];if(!file)return;
+  if(!confirm('Restaurar backup? Os dados atuais serão substituídos.')){input.value='';return}
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{const data=JSON.parse(e.target.result);
+      if(!data.visits&&!data.avals){showToast('❌ Arquivo inválido');return}
+      S.visits=data.visits||[];S.avals=data.avals||[];sv();
+      renderDash();renderHist();renderRank();
+      showToast('✅ Backup restaurado! '+S.visits.length+' visitas e '+S.avals.length+' avaliações.');
+    }catch(err){showToast('❌ Erro ao ler o arquivo')}
+    input.value='';
+  };reader.readAsText(file);
+}
+
+/* ===== SHOW PAGE ===== */
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
-  const m={dashboard:0,'nova-visita':1,'avaliacao-func':2,historico:3,ranking:4};
+  const m={dashboard:0,'nova-visita':1,'avaliacao-func':2,'avaliacao-lider':2,'feedback':3,historico:4,ranking:5};
   const tabs=document.querySelectorAll('.nav-tab');
   if(m[id]!==undefined)tabs[m[id]].classList.add('active');
-  // Bottom nav ativo
-  [0,1,2,3,4].forEach(i=>{
-    const b=document.getElementById('bn'+i);
-    if(b)b.style.color=i===m[id]?'var(--gold)':'var(--light)';
-  });
+  [0,1,2,3,4].forEach(i=>{const b=document.getElementById('bn'+i);if(b)b.style.color=i===m[id]?'var(--gold)':'var(--light)'});
   if(id==='historico')renderHist();
   if(id==='ranking')renderRank();
   if(id==='dashboard')renderDash();
   window.scrollTo(0,0);
 }
 
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
 
-function backupData(){
-  const data={visits:S.visits,avals:S.avals,exportedAt:new Date().toISOString(),version:'1.0'};
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a=document.createElement('a');
-  const date=new Date().toLocaleDateString('pt-BR').replace(/\//g,'-');
-  a.href=URL.createObjectURL(blob);
-  a.download='avatim_backup_'+date+'.json';
-  a.click();
-  showToast('💾 Backup salvo com sucesso!');
-}
-
-function restoreData(input){
-  const file=input.files[0];if(!file)return;
-  if(!confirm('Restaurar backup? Os dados atuais serão substituídos.')){input.value='';return}
-  const reader=new FileReader();
-  reader.onload=e=>{
-    try{
-      const data=JSON.parse(e.target.result);
-      if(!data.visits&&!data.avals){showToast('❌ Arquivo inválido');return}
-      S.visits=data.visits||[];
-      S.avals=data.avals||[];
-      sv();
-      renderDash();renderHist();renderRank();
-      showToast('✅ Backup restaurado! '+S.visits.length+' visitas e '+S.avals.length+' avaliações.');
-    }catch(err){showToast('❌ Erro ao ler o arquivo')}
-    input.value='';
-  };
-  reader.readAsText(file);
-}
-
-
-function mostrarPDI(){
-  document.getElementById('pdiSection').style.display='block';
-  document.getElementById('pdiSection').scrollIntoView({behavior:'smooth'});
-}
-
+/* ===== PDI VENDEDORA ===== */
 function gerarPDI(){
   const nome=document.getElementById('fFN').value||'a funcionária';
-  const cargo=document.getElementById('fFC').value||'Vendedora';
-  const loja=document.getElementById('fFL').value;
-  const periodo=document.getElementById('fFP').value||'este período';
-  const feedbackPos=document.getElementById('fFFpos').value||'';
-  const feedbackDev=document.getElementById('fFFdev').value||'';
-
   const btn=document.getElementById('btnGerarPDI');
   btn.disabled=true;btn.textContent='⏳ Gerando...';
   document.getElementById('pdiLoadingBadge').textContent='analisando...';
   document.getElementById('pdiContent').innerHTML='<div style="text-align:center;padding:36px;color:var(--mid)"><div style="font-size:32px;margin-bottom:12px">✨</div><div style="font-size:13px">Criando PDI para '+nome+'...</div></div>';
 
-  // Coletar notas
-  const notasPorCat={};
+  const starsSnap={...S.fstars};
   let totalPontos=0,totalCrit=0;
+  const notasPorCat={};
   Object.entries(FCAT).forEach(([cat,items])=>{
-    const notas=items.map(item=>S.fstars[cat+'|'+item]||0);
+    const notas=items.map(item=>starsSnap[cat+'|'+item]||0);
     const soma=notas.reduce((a,b)=>a+b,0);
-    const media=parseFloat((soma/notas.length).toFixed(1));
-    notasPorCat[cat]={media,soma,itens:items.map((item,i)=>({item,nota:notas[i]}))};
+    notasPorCat[cat]={media:parseFloat((soma/notas.length).toFixed(1)),soma,itens:items.map((item,i)=>({item,nota:notas[i]}))};
     totalPontos+=soma;totalCrit+=notas.length;
   });
-
   const pct=Math.round((totalPontos/(totalCrit*5))*100);
   const clf=getClf(pct);
-
-  // Separar fortes, médios e críticos
   const fortes=[],criticos=[],medios=[];
-  Object.entries(notasPorCat).forEach(([cat,d])=>{
-    d.itens.forEach(x=>{
-      if(x.nota>=4)fortes.push({cat,item:x.item,nota:x.nota});
-      else if(x.nota>0&&x.nota<=2)criticos.push({cat,item:x.item,nota:x.nota});
-      else if(x.nota===3)medios.push({cat,item:x.item,nota:x.nota});
-    });
-  });
+  Object.entries(notasPorCat).forEach(([cat,d])=>{d.itens.forEach(x=>{if(x.nota>=4)fortes.push({cat,item:x.item,nota:x.nota});else if(x.nota>0&&x.nota<=2)criticos.push({cat,item:x.item,nota:x.nota});else if(x.nota===3)medios.push({cat,item:x.item,nota:x.nota})})});
 
-  // Banco de ações por critério (baseado em Gallup, Lencioni, Pink, Dweck, Blanchard, Goldsmith)
-  const BANCO_ACOES={
-    'Atingimento de metas':          {acao:'Definir micro-metas diárias visíveis (post-it no balcão) e revisar resultado ao fim de cada turno. Celebre cada conquista, por menor que seja.',recurso:'Livro: O Gerente Minuto — Ken Blanchard',ind:'Meta diária atingida em ≥ 4 dias/semana'},
-    'Ticket médio e itens por venda':{acao:'Treinar 2 sugestões de produto adicional por atendimento. Criar script pessoal de "complemento natural" para os 5 produtos mais vendidos.',recurso:'Técnica: SPIN Selling — Neil Rackham',ind:'Ticket médio crescendo ≥ 10% em 30 dias'},
-    'Taxa de conversão':             {acao:'Mapear os 3 principais motivos de saída sem compra e criar resposta para cada um. Praticar role play semanal com colega.',recurso:'Livro: Objeções — Jeb Blount',ind:'Taxa de conversão aumentando semana a semana'},
-    'Venda adicional (cross sell)':  {acao:'Montar "combinações campeãs" com os produtos da loja e apresentar como sugestão natural, não como empurra-venda.',recurso:'Prática: Kit sugestão do mês exposto no balcão',ind:'% de vendas com item adicional'},
-    'Consistência de resultados':    {acao:'Criar ritual de abertura: checar meta do dia, revisar resultado do dia anterior e definir 1 foco de melhoria para o turno.',recurso:'Livro: O Poder do Hábito — Charles Duhigg',ind:'Resultado dentro da meta em ≥ 80% dos dias'},
-    'Abordagem e receptividade':     {acao:'Praticar abordagem com sorriso, nome do cliente e pergunta aberta nos primeiros 30 segundos. Criar 3 versões de frase de abertura e testar.',recurso:'Livro: Como Fazer Amigos — Dale Carnegie',ind:'Feedback positivo de clientes e observação da gestora'},
-    'Escuta ativa e empatia':        {acao:'Antes de apresentar produto, fazer ao menos 2 perguntas sobre a necessidade do cliente. Anotar o que o cliente disse e repetir em palavras próprias.',recurso:'Livro: Comunicação Não-Violenta — Marshall Rosenberg',ind:'Redução de reclamações, aumento de retorno de clientes'},
-    'Conhecimento técnico dos produtos':{acao:'Estudar 2 produtos por semana (notas olfativas, benefícios, público-alvo). Criar "ficha técnica pessoal" com linguagem própria.',recurso:'Catálogo Avatim + Perfumería Española (YouTube)',ind:'Conseguir explicar qualquer produto sem consultar material'},
-    'Experiência e encantamento do cliente':{acao:'Criar um momento especial em cada atendimento: deixar cliente testar fragrância no pulso, oferecer água, personalizar embrulho.',recurso:'Livro: Satisfação Garantida — Tony Hsieh',ind:'Aumento no NPS/retorno de clientes fiéis'},
-    'Resolução de objeções':         {acao:'Mapear as 5 objeções mais comuns e criar respostas empáticas para cada. Praticar com colega semanalmente.',recurso:'Livro: Nunca Divida a Diferença — Chris Voss',ind:'Conversão após objeção ≥ 40%'},
-    'Fidelização e pós-venda':       {acao:'Enviar mensagem de acompanhamento no WhatsApp 7 dias após a compra. Criar lista de clientes VIP para contato mensal.',recurso:'Ferramenta: WhatsApp Business com etiquetas',ind:'% de clientes que retornam em 60 dias'},
-    'Responsabilidade e autonomia':  {acao:'Para cada problema, chegar com pelo menos 1 solução proposta antes de escalar. Cultivar o hábito "eu resolvo, depois comunico".',recurso:'Livro: Extrema Responsabilidade — Jocko Willink',ind:'Redução de problemas escalados sem tentativa de solução'},
-    'Proatividade e iniciativa':     {acao:'Identificar 1 melhoria pequena por semana na loja ou no processo e implementar sem precisar ser pedido.',recurso:'Livro: Faça Acontecer — Sheryl Sandberg',ind:'1 ação proativa documentada por semana'},
-    'Colaboração e trabalho em equipe':{acao:'Oferecer ajuda ativa ao colega em momentos de pico. Compartilhar 1 aprendizado por semana no grupo da equipe.',recurso:'Livro: As 5 Disfunções de uma Equipe — Patrick Lencioni',ind:'Percepção positiva da equipe e da gestora'},
-    'Resiliência sob pressão':       {acao:'Criar ritual de "reset" entre atendimentos difíceis (respiração, agua, 1 minuto). Praticar autocontrole emocional consciente.',recurso:'Livro: Inteligência Emocional — Daniel Goleman',ind:'Manutenção da qualidade do atendimento mesmo em dias difíceis'},
-    'Postura e presença profissional':{acao:'Revisar uniformização e postura física diariamente antes de abrir a loja. Cuidar da linguagem corporal e tom de voz em cada atendimento.',recurso:'Livro: O Corpo Fala — Pierre Weil',ind:'Feedback da gestora e clientes sobre apresentação'},
-    'Abertura a feedbacks':          {acao:'Solicitar feedback da gestora ao menos 1x por semana. Anotar e implementar 1 sugestão por semana, sem justificativas.',recurso:'Livro: Obrigado pelo Feedback — Douglas Stone',ind:'Aplicação visível de feedbacks recebidos'},
-    'Pontualidade':                  {acao:'Estabelecer alarme com 30 min de antecedência. Comunicar via WhatsApp qualquer imprevisto antes do horário de entrada.',recurso:'Hábito: Regra dos 2 minutos — David Allen (GTD)',ind:'Zero atrasos sem comunicação prévia'},
-    'Frequência e presença':         {acao:'Manter calendário pessoal de compromissos e planejar cuidados de saúde preventivos para evitar faltas inesperadas.',recurso:'Hábito: Check-in semanal de agenda e saúde',ind:'Frequência ≥ 95% no período'},
-    'Aviso antecipado de ausência':  {acao:'Comunicar qualquer ausência com no mínimo 24h de antecedência. Criar contato direto com a gestora para situações emergenciais.',recurso:'Acordo: Canal direto estabelecido com a gestora',ind:'100% das ausências comunicadas com antecedência'},
-    'Organização e visual da loja':  {acao:'Seguir checklist de abertura e fechamento diariamente. Adotar postura de "dono da loja": qualquer desorganização é responsabilidade de todos.',recurso:'Metodologia: 5S adaptado ao varejo',ind:'Checklist de loja 100% concluído diariamente'},
-    'Reposição e gestão de produtos':{acao:'Verificar estoque crítico toda manhã e acionar reposição antes de zerar. Nunca deixar prateleira vazia sem sinalização.',recurso:'Prática: Kanban visual de estoque mínimo',ind:'Zero rupturas de produtos sem sinalização'},
-    'Execução de campanhas e ações': {acao:'Ler briefing de campanha no início da semana e treinar apresentação do produto foco. Expor material de campanha conforme padrão visual.',recurso:'Guia: Manual de campanhas Avatim',ind:'Campanha do mês executada dentro do prazo e padrão'},
-    'Cumprimento de processos e rotinas':{acao:'Criar checklist pessoal das rotinas obrigatórias do turno e revisar ao final. Tratar processos como não-negociáveis.',recurso:'Livro: A Arte da Execução — Larry Bossidy',ind:'Processos cumpridos em 100% dos turnos'},
-    'Atenção aos indicadores da loja':{acao:'Consultar painel de indicadores no início de cada turno. Saber de cor: meta do dia, % atingido e o que falta para bater.',recurso:'Hábito: 5 minutos de "briefing de números" na abertura',ind:'Consegue citar os indicadores da loja sem consultar'},
-  };
+  const BANCO_ACOES={'Atingimento de metas':{acao:'Definir micro-metas diárias visíveis (post-it no balcão) e revisar resultado ao fim de cada turno.',recurso:'Livro: O Gerente Minuto — Ken Blanchard',ind:'Meta diária atingida em ≥ 4 dias/semana'},'Ticket médio e itens por venda':{acao:'Treinar 2 sugestões de produto adicional por atendimento.',recurso:'Técnica: SPIN Selling — Neil Rackham',ind:'Ticket médio crescendo ≥ 10% em 30 dias'},'Taxa de conversão':{acao:'Mapear os 3 principais motivos de saída sem compra e criar resposta para cada um.',recurso:'Livro: Objeções — Jeb Blount',ind:'Taxa de conversão aumentando semana a semana'},'Venda adicional (cross sell)':{acao:'Montar "combinações campeãs" e apresentar como sugestão natural.',recurso:'Prática: Kit sugestão do mês exposto no balcão',ind:'% de vendas com item adicional'},'Consistência de resultados':{acao:'Criar ritual de abertura: checar meta do dia, revisar ontem, definir 1 foco.',recurso:'Livro: O Poder do Hábito — Charles Duhigg',ind:'Resultado dentro da meta em ≥ 80% dos dias'},'Abordagem e receptividade':{acao:'Praticar abordagem com sorriso, nome do cliente e pergunta aberta nos primeiros 30 segundos.',recurso:'Livro: Como Fazer Amigos — Dale Carnegie',ind:'Feedback positivo de clientes e gestora'},'Escuta ativa e empatia':{acao:'Antes de apresentar produto, fazer ao menos 2 perguntas sobre a necessidade do cliente.',recurso:'Livro: Comunicação Não-Violenta — Marshall Rosenberg',ind:'Redução de reclamações, aumento de retorno'},'Conhecimento técnico dos produtos':{acao:'Estudar 2 produtos por semana. Criar "ficha técnica pessoal" com linguagem própria.',recurso:'Catálogo Avatim + YouTube Perfumería Española',ind:'Conseguir explicar qualquer produto sem consultar material'},'Experiência e encantamento do cliente':{acao:'Criar um momento especial em cada atendimento: testar fragrância no pulso, personalizar embrulho.',recurso:'Livro: Satisfação Garantida — Tony Hsieh',ind:'Aumento no retorno de clientes fiéis'},'Resolução de objeções':{acao:'Mapear as 5 objeções mais comuns e criar respostas empáticas para cada.',recurso:'Livro: Nunca Divida a Diferença — Chris Voss',ind:'Conversão após objeção ≥ 40%'},'Fidelização e pós-venda':{acao:'Enviar mensagem de acompanhamento no WhatsApp 7 dias após a compra.',recurso:'Ferramenta: WhatsApp Business com etiquetas',ind:'% de clientes que retornam em 60 dias'},'Responsabilidade e autonomia':{acao:'Para cada problema, chegar com pelo menos 1 solução proposta antes de escalar.',recurso:'Livro: Extrema Responsabilidade — Jocko Willink',ind:'Redução de problemas escalados sem tentativa de solução'},'Proatividade e iniciativa':{acao:'Identificar 1 melhoria pequena por semana e implementar sem precisar ser pedido.',recurso:'Livro: Faça Acontecer — Sheryl Sandberg',ind:'1 ação proativa documentada por semana'},'Colaboração e trabalho em equipe':{acao:'Oferecer ajuda ativa ao colega em momentos de pico.',recurso:'Livro: As 5 Disfunções de uma Equipe — Patrick Lencioni',ind:'Percepção positiva da equipe e da gestora'},'Resiliência sob pressão':{acao:'Criar ritual de "reset" entre atendimentos difíceis.',recurso:'Livro: Inteligência Emocional — Daniel Goleman',ind:'Manutenção da qualidade mesmo em dias difíceis'},'Postura e presença profissional':{acao:'Revisar uniformização e postura física diariamente antes de abrir a loja.',recurso:'Livro: O Corpo Fala — Pierre Weil',ind:'Feedback da gestora e clientes sobre apresentação'},'Abertura a feedbacks':{acao:'Solicitar feedback da gestora ao menos 1x por semana e implementar 1 sugestão.',recurso:'Livro: Obrigado pelo Feedback — Douglas Stone',ind:'Aplicação visível de feedbacks recebidos'},'Pontualidade':{acao:'Estabelecer alarme com 30 min de antecedência.',recurso:'Regra dos 2 minutos — David Allen',ind:'Zero atrasos sem comunicação prévia'},'Frequência e presença':{acao:'Manter calendário pessoal e planejar cuidados de saúde preventivos.',recurso:'Check-in semanal de agenda e saúde',ind:'Frequência ≥ 95% no período'},'Aviso antecipado de ausência':{acao:'Comunicar qualquer ausência com no mínimo 24h de antecedência.',recurso:'Acordo: Canal direto estabelecido com a gestora',ind:'100% das ausências comunicadas com antecedência'},'Organização e visual da loja':{acao:'Seguir checklist de abertura e fechamento diariamente.',recurso:'Metodologia: 5S adaptado ao varejo',ind:'Checklist 100% concluído diariamente'},'Reposição e gestão de produtos':{acao:'Verificar estoque crítico toda manhã.',recurso:'Kanban visual de estoque mínimo',ind:'Zero rupturas de produtos sem sinalização'},'Execução de campanhas e ações':{acao:'Ler briefing de campanha no início da semana e treinar apresentação.',recurso:'Manual de campanhas Avatim',ind:'Campanha executada dentro do prazo e padrão'},'Cumprimento de processos e rotinas':{acao:'Criar checklist pessoal das rotinas obrigatórias.',recurso:'Livro: A Arte da Execução — Larry Bossidy',ind:'Processos cumpridos em 100% dos turnos'},'Atenção aos indicadores da loja':{acao:'Consultar painel de indicadores no início de cada turno.',recurso:'5 minutos de briefing de números na abertura',ind:'Consegue citar os indicadores sem consultar'}};
 
-  // Montar prioridades (máx 4, priorizar críticos e médios)
   const candidatos=[...criticos,...medios,...fortes.filter(f=>f.nota<5)].slice(0,4);
-  const prioridades=candidatos.map(c=>{
-    const b=BANCO_ACOES[c.item]||{
-      acao:`Desenvolver ativamente ${c.item.toLowerCase()} através de prática diária e busca de feedback constante.`,
-      recurso:'Reflexão semanal com a gestora',
-      ind:'Melhora perceptível nas próximas avaliações'
-    };
-    const prazo=c.nota<=1?'30 dias':c.nota<=2?'30 dias':c.nota===3?'60 dias':'90 dias';
-    return{item:c.item,cat:c.cat,nota:c.nota,acao:b.acao,recurso:b.recurso,ind:b.ind,prazo};
-  });
+  const prioridades=candidatos.map(c=>{const b=BANCO_ACOES[c.item]||{acao:`Desenvolver ${c.item.toLowerCase()} através de prática diária.`,recurso:'Reflexão semanal com a gestora',ind:'Melhora perceptível nas próximas avaliações'};const prazo=c.nota<=2?'30 dias':c.nota===3?'60 dias':'90 dias';return{item:c.item,cat:c.cat,nota:c.nota,acao:b.acao,recurso:b.recurso,ind:b.ind,prazo}});
 
-  // Diagnóstico baseado no perfil
-  const catMedias=Object.entries(notasPorCat).map(([cat,d])=>({cat,media:d.media})).sort((a,b)=>b.media-a.media);
-  const melhorCat=catMedias[0];
-  const piorCat=catMedias[catMedias.length-1];
+  const topFortes=fortes.sort((a,b)=>b.nota-a.nota).slice(0,3).map(f=>{const t={'Atingimento de metas':'Forte orientação a resultado','Abordagem e receptividade':'Excelente primeiro contato com o cliente','Escuta ativa e empatia':'Capacidade de ouvir e criar conexão genuína','Colaboração e trabalho em equipe':'Presença positiva que fortalece o coletivo','Postura e presença profissional':'Representação impecável da marca'};return t[f.item]||`Destaque em ${f.item}`});
+  if(topFortes.length===0)topFortes.push('Disponibilidade para crescer','Comprometimento com a equipe e a loja','Potencial identificado pelo avaliador');
 
-  const diagnosticos={
-    'Excelente':`${nome} demonstra alto nível de maturidade profissional e consistência nos resultados. Suas competências estão bem desenvolvidas e ela representa um exemplo positivo para a equipe. O foco agora é consolidar a excelência e expandir sua influência. Com base na metodologia Gallup, o caminho é potencializar ainda mais o que já é forte para alcançar performance extraordinária.`,
-    'Muito Bom':`${nome} apresenta performance acima da média com pontos de destaque claros. Já demonstra comprometimento e capacidade de entrega consistente. Segundo Ken Blanchard, ela está no nível de "competente comprometida" — o momento ideal para dar mais autonomia e desafios maiores. Com pequenos ajustes em áreas específicas, pode alcançar excelência.`,
-    'Bom':`${nome} tem uma base sólida e mostra disposição para crescer. Apresenta boas competências em ${melhorCat.cat.replace(/[^\w\s]/g,'')} e oportunidades claras de desenvolvimento em ${piorCat.cat.replace(/[^\w\s]/g,'')}. Pelo conceito de Growth Mindset de Carol Dweck, ela tem tudo para evoluir — a chave está em encarar os desafios como oportunidades de aprendizado e não como ameaças.`,
-    'Precisa Melhorar':`${nome} está em um momento de transição importante. Algumas competências fundamentais precisam de atenção e desenvolvimento estruturado. Daniel Pink nos lembra que o engajamento vem quando há clareza de propósito — é essencial alinhar com ela o "porquê" do seu crescimento e criar pequenas vitórias iniciais para construir confiança. O potencial existe, falta estrutura.`,
-    'Crítico':`${nome} enfrenta desafios significativos que precisam de atenção imediata e suporte estruturado. Marshall Goldsmith aponta que comportamentos que nos travaram no passado raramente se corrigem sozinhos — é preciso intervenção consciente, feedback direto e comprometimento mútuo. Este PDI é um ponto de virada: com o suporte certo, a evolução pode ser surpreendente.`
-  };
+  const plano={d30:{foco:'Consciência e primeiros hábitos',acoes:['Alinhar expectativas com a gestora e revisar este PDI','Iniciar 1 ação prática por prioridade','Criar rituais de início e fim de turno'],entrega:'Comprometimento visível e primeiros resultados'},d60:{foco:'Prática e construção de competências',acoes:['Executar ações com consistência diária','Solicitar feedback quinzenalmente','Documentar aprendizados'],entrega:'Melhora perceptível nos critérios críticos'},d90:{foco:'Consolidação e nova avaliação',acoes:['Revisar PDI com a gestora','Celebrar conquistas','Definir novos desafios'],entrega:'Evolução mensurável e nova classificação'}};
 
-  const diagnostico=diagnosticos[clf.l]||diagnosticos['Bom'];
+  const diag={Excelente:`${nome} demonstra alto nível de maturidade profissional. O foco agora é consolidar a excelência e potencializar ainda mais o que já é forte.`,
+    'Muito Bom':`${nome} apresenta performance acima da média. Com pequenos ajustes em áreas específicas, pode alcançar excelência.`,
+    'Bom':`${nome} tem uma base sólida. Pelo conceito de Growth Mindset de Carol Dweck, ela tem tudo para evoluir com os desafios certos.`,
+    'Precisa Melhorar':`${nome} está em um momento de transição. É essencial criar pequenas vitórias iniciais para construir confiança e engajamento.`,
+    'Crítico':`${nome} enfrenta desafios significativos. Com intervenção consciente, feedback direto e suporte estruturado, a evolução pode ser surpreendente.`};
 
-  // Perfil comportamental
-  const perfis={
-    'Excelente':'Profissional de alta performance com competências consolidadas e forte influência positiva na equipe',
-    'Muito Bom':'Executora comprometida com resultados consistentes, pronta para assumir maiores responsabilidades',
-    'Bom':'Colaboradora dedicada com boa base técnica e espaço claro para crescimento estruturado',
-    'Precisa Melhorar':'Profissional em desenvolvimento que precisa de suporte próximo e metas muito claras para avançar',
-    'Crítico':'Colaboradora em fase crítica que requer acompanhamento intensivo e plano de ação imediato'
-  };
+  const msgs={Excelente:`${nome}, você já chegou a um nível que poucos alcançam. Continue sendo essa profissional extraordinária. 🌸`,
+    'Muito Bom':`${nome}, você está construindo algo sólido e bonito. O melhor de você ainda está por vir. ✨`,
+    'Bom':`${nome}, este PDI não é uma lista de erros — é um mapa do seu potencial. A Avatim acredita em você. 💛`,
+    'Precisa Melhorar':`${nome}, toda grande profissional passou por um momento de reconstrução. A Avatim está ao seu lado. 🤝`,
+    'Crítico':`${nome}, uma ação por dia é suficiente para começar a virada. Não desista de si mesma. 💪`};
 
-  // Pontos fortes
-  const topFortes=fortes.sort((a,b)=>b.nota-a.nota).slice(0,3).map(f=>{
-    const textos={
-      'Atingimento de metas':'Forte orientação a resultado — sabe o que precisa entregar e se mobiliza para isso',
-      'Abordagem e receptividade':'Excelente primeiro contato com o cliente — cria conexão natural e acolhedora',
-      'Escuta ativa e empatia':'Capacidade rara de ouvir de verdade — o cliente se sente compreendido e valorizado',
-      'Colaboração e trabalho em equipe':'Presença positiva na equipe — fortalece o coletivo e cria ambiente de confiança',
-      'Postura e presença profissional':'Representação impecável da marca — transmite credibilidade e sofisticação',
-      'Responsabilidade e autonomia':'Alta confiabilidade — entrega o que promete e resolve sem precisar ser cobrada',
-      'Organização e visual da loja':'Olhar apurado para o ambiente — mantém a loja atraente e funcional',
-      'Conhecimento técnico dos produtos':'Domínio técnico que inspira confiança no cliente e facilita a venda consultiva',
-    };
-    return textos[f.item]||`Destaque em ${f.item} — competência que agrega valor direto à loja e ao cliente`;
-  });
-  if(topFortes.length===0)topFortes.push('Disponibilidade para receber feedback e crescer','Comprometimento com a equipe e a loja','Potencial identificado pelo avaliador');
-
-  // Plano 30/60/90
-  const plano={
-    d30:{foco:'Consciência e primeiros hábitos',acoes:['Alinhar expectativas claras com a gestora e revisar este PDI juntas','Iniciar 1 ação prática por prioridade identificada','Criar rituais de início e fim de turno (checklist pessoal)'],entrega:'Comprometimento visível com o plano e primeiros resultados nos indicadores'},
-    d60:{foco:'Prática e construção de competências',acoes:['Executar as ações de desenvolvimento com consistência diária','Solicitar feedback estruturado da gestora quinzenalmente','Documentar aprendizados e dificuldades encontradas'],entrega:'Melhora perceptível nos critérios críticos e aplicação das ações no dia a dia'},
-    d90:{foco:'Consolidação e nova avaliação',acoes:['Revisar PDI com a gestora: o que evoluiu, o que ainda precisa de atenção','Celebrar conquistas — reconhecer o crescimento é parte do processo','Definir novos desafios para o próximo ciclo'],entrega:'Evolução mensurável nos indicadores e nova classificação na próxima avaliação'}
-  };
-
-  // Acordo de crescimento
-  const acordos={
-    'Excelente':`A empresa reconhece o nível de excelência de ${nome} e se compromete a oferecer novos desafios e oportunidades de liderança. Em troca, espera-se que ela continue sendo referência positiva e compartilhe seu conhecimento com a equipe.`,
-    'Muito Bom':`A gestora se compromete a dar feedbacks estruturados quinzenalmente e abrir espaço para mais autonomia. ${nome} se compromete a buscar evolução contínua e comunicar proativamente suas dificuldades.`,
-    'Bom':`A empresa se compromete a oferecer suporte, treinamentos e acompanhamento próximo. ${nome} se compromete a executar as ações deste PDI com consistência e abertura para aprender.`,
-    'Precisa Melhorar':`A gestora se compromete a reuniões semanais de acompanhamento e suporte próximo. ${nome} se compromete a encarar este momento como oportunidade real de virada e a se esforçar ativamente para evoluir.`,
-    'Crítico':`A empresa oferece suporte total para a recuperação de performance. ${nome} se compromete a priorizar as ações críticas deste PDI e a comunicar dificuldades imediatamente, sem esperar acumular.`
-  };
-
-  // Mensagens motivacionais
-  const msgs={
-    'Excelente':`${nome}, você já chegou a um nível que poucos alcançam. Na Avatim, cada frasco carrega uma experiência sensorial única — e você tem o dom de transmitir isso a cada cliente que entra na loja. Continue sendo essa profissional extraordinária e inspirando todos ao seu redor. 🌸`,
-    'Muito Bom':`${nome}, você está construindo algo sólido e bonito. Cada evolução sua é percebida e valorizada. Na Avatim, acreditamos que assim como os melhores aromas se revelam com o tempo, o melhor de você ainda está por vir. Continue! ✨`,
-    'Bom':`${nome}, você tem uma base verdadeira para crescer. Este PDI não é uma lista de erros — é um mapa do seu potencial. A Avatim acredita em você e está ao seu lado nessa jornada. Um passo de cada vez, com consistência, e os resultados virão. 💛`,
-    'Precisa Melhorar':`${nome}, toda grande profissional passou por um momento de reconstrução. O que define quem você será é a escolha que faz agora. A Avatim acredita no seu potencial e este PDI é uma prova disso. Você tem apoio — use-o. 🤝`,
-    'Crítico':`${nome}, este é um momento difícil, mas também de grande oportunidade. Cada pequena melhoria conta. A Avatim não desistiu de você — e esperamos que você não desista de si mesma. Uma ação por dia é suficiente para começar a virada. 💪`
-  };
-
-  window._pdiObj={
-    classificacao:clf.l,
-    pct,
-    diagnostico,
-    perfil:perfis[clf.l],
-    fortes:topFortes,
-    prioridades,
-    plano,
-    acordo:acordos[clf.l],
-    msg:msgs[clf.l]
-  };
+  window._pdiObj={classificacao:clf.l,pct,diagnostico:diag[clf.l]||diag['Bom'],perfil:clf.l,fortes:topFortes,prioridades,plano,acordo:`A gestora se compromete a oferecer suporte e feedbacks estruturados. ${nome} se compromete a executar as ações deste PDI com abertura para crescer.`,msg:msgs[clf.l]||msgs['Bom']};
   window._pdiGerado=JSON.stringify(window._pdiObj);
 
-  // Renderizar
-  const pctColor=pct>=80?'var(--green)':pct>=60?'var(--gold)':'var(--red)';
-  let html=`
-  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:14px;background:linear-gradient(135deg,${pctColor}18,${pctColor}08);border:1px solid ${pctColor}33;border-radius:12px">
-    <div style="font-size:38px">${clf.e}</div>
-    <div><div style="font-size:11px;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.5px">${clf.l} · ${pct}%</div>
-    <div style="font-size:12px;font-style:italic;color:var(--dark);margin-top:3px">${perfis[clf.l]}</div></div>
-  </div>
-
-  <div style="background:var(--white);border:1px solid #EDE8E0;border-radius:11px;padding:16px;margin-bottom:14px">
-    <div style="font-size:10px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">📊 Diagnóstico</div>
-    <div style="font-size:13px;line-height:1.7;color:var(--dark)">${diagnostico}</div>
-  </div>
-
-  ${topFortes.length?`<div style="margin-bottom:16px">
-    <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">💪 Forças a Potencializar</div>
-    ${topFortes.map(p=>`<div style="background:rgba(90,138,106,.08);border:1px solid rgba(90,138,106,.25);border-radius:9px;padding:9px 13px;font-size:12px;color:var(--dark);line-height:1.5;margin-bottom:6px">✨ ${p}</div>`).join('')}
-  </div>`:''}
-
-  ${prioridades.length?`<div style="margin-bottom:16px">
-    <div style="font-size:10px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">🎯 Prioridades de Desenvolvimento</div>
-    ${prioridades.map(p=>`
-      <div style="background:var(--white);border:1px solid #EDE8E0;border-left:3px solid ${p.nota<=2?'var(--red)':p.nota===3?'var(--gold)':'var(--green)'};border-radius:9px;padding:14px;margin-bottom:10px">
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:8px;flex-wrap:wrap">
-          <span style="font-size:12px;font-weight:700;color:var(--dark)">${p.item}</span>
-          <span style="background:${p.nota<=2?'rgba(192,57,43,.1)':p.nota===3?'rgba(201,168,76,.1)':'rgba(90,138,106,.1)'};color:${p.nota<=2?'var(--red)':p.nota===3?'var(--gold-dark)':'var(--green)'};border-radius:18px;padding:2px 9px;font-size:10px;font-weight:700">${p.nota}/5</span>
-          <span style="background:rgba(90,122,154,.1);color:var(--blue);border-radius:18px;padding:2px 9px;font-size:10px">${p.prazo}</span>
-        </div>
-        <div style="font-size:12px;color:var(--dark);margin-bottom:6px">📌 ${p.acao}</div>
-        <div style="font-size:11px;color:var(--blue);margin-bottom:5px">📚 ${p.recurso}</div>
-        <div style="font-size:11px;color:var(--mid);padding-top:6px;border-top:1px solid #F0EBE3">📈 Indicador: ${p.ind}</div>
-      </div>`).join('')}
-  </div>`:'<div style="padding:14px;text-align:center;color:var(--mid);font-size:12px">Preencha as notas dos critérios para gerar prioridades personalizadas.</div>'}
-
-  <div style="margin-bottom:16px">
-    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">🗓️ Plano 30 · 60 · 90 dias</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
-      ${[
-        {d:'30 dias',k:'d30',c:'var(--green)',bg:'rgba(90,138,106,.08)',bc:'rgba(90,138,106,.2)'},
-        {d:'60 dias',k:'d60',c:'var(--gold-dark)',bg:'rgba(201,168,76,.08)',bc:'rgba(201,168,76,.2)'},
-        {d:'90 dias',k:'d90',c:'var(--blue)',bg:'rgba(90,122,154,.08)',bc:'rgba(90,122,154,.2)'}
-      ].map(m=>{const p=plano[m.k];return`<div style="background:${m.bg};border:1px solid ${m.bc};border-radius:9px;padding:12px">
-        <div style="font-size:10px;font-weight:700;color:${m.c};margin-bottom:6px;text-transform:uppercase">${m.d} · ${p.foco}</div>
-        ${p.acoes.map(a=>`<div style="font-size:11px;color:var(--dark);margin-bottom:4px;line-height:1.4">• ${a}</div>`).join('')}
-        <div style="font-size:10px;color:var(--mid);margin-top:7px;padding-top:6px;border-top:1px solid ${m.bc};font-style:italic">${p.entrega}</div>
-      </div>`;}).join('')}
-    </div>
-  </div>
-
-  <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:11px;padding:14px;margin-bottom:14px">
-    <div style="font-size:10px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">🤝 Acordo de Crescimento</div>
-    <div style="font-size:12px;color:var(--dark);line-height:1.6">${acordos[clf.l]}</div>
-  </div>
-
-  <div style="background:linear-gradient(135deg,var(--dark),var(--dark2));border-radius:11px;padding:18px;text-align:center">
-    <div style="font-size:22px;margin-bottom:8px">🌸</div>
-    <div style="font-size:13px;font-style:italic;color:var(--gold-light);line-height:1.7">"${msgs[clf.l]}"</div>
-  </div>`;
-
-  document.getElementById('pdiContent').innerHTML=html;
+  document.getElementById('pdiContent').innerHTML=renderPDI(window._pdiObj);
   document.getElementById('pdiLoadingBadge').textContent='✅ pronto!';
-  btn.textContent='🔄 Gerar novamente';
-  btn.disabled=false;
-  showToast('🚀 PDI gerado!');
+  btn.textContent='🔄 Gerar novamente';btn.disabled=false;showToast('🚀 PDI gerado!');
 }
-
-
-function mostrarPDI(){
-  document.getElementById('pdiSection').style.display='block';
-  document.getElementById('pdiSection').scrollIntoView({behavior:'smooth'});
-}
-
-
-function mostrarPDI(){
-  document.getElementById('pdiSection').style.display='block';
-  document.getElementById('pdiSection').scrollIntoView({behavior:'smooth'});
-}
-
-
 
 function renderPDI(pdi){
   if(!pdi)return'';
-  const pctColor=pdi.pct>=80?'var(--green)':pdi.pct>=60?'var(--gold)':'var(--red)';
-  const clf=getClf(pdi.pct);
-  let h=`
-  <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:13px;background:linear-gradient(135deg,${pctColor}18,${pctColor}08);border:1px solid ${pctColor}33;border-radius:11px">
-    <div style="font-size:34px">${clf.e}</div>
-    <div><div style="font-size:10px;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.5px">${pdi.classificacao} · ${pdi.pct}%</div>
-    <div style="font-size:12px;font-style:italic;color:var(--dark);margin-top:2px">${pdi.perfil}</div></div>
-  </div>
-  <div style="background:var(--white);border:1px solid #EDE8E0;border-radius:10px;padding:14px;margin-bottom:12px">
-    <div style="font-size:10px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">📊 Diagnóstico</div>
-    <div style="font-size:12px;line-height:1.7;color:var(--dark)">${pdi.diagnostico}</div>
-  </div>`;
-
-  if(pdi.fortes&&pdi.fortes.length){
-    h+=`<div style="margin-bottom:12px">
-    <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">💪 Forças a Potencializar</div>
-    ${pdi.fortes.map(p=>`<div style="background:rgba(90,138,106,.08);border:1px solid rgba(90,138,106,.25);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--dark);line-height:1.5;margin-bottom:5px">✨ ${p}</div>`).join('')}
-    </div>`;
-  }
-
-  if(pdi.prioridades&&pdi.prioridades.length){
-    h+=`<div style="margin-bottom:12px">
-    <div style="font-size:10px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">🎯 Ações Prioritárias</div>`;
-    pdi.prioridades.forEach((p,i)=>{
-      const cor=p.nota<=2?'var(--red)':p.nota===3?'var(--gold)':'var(--green)';
-      const bgcor=p.nota<=2?'rgba(192,57,43,.08)':p.nota===3?'rgba(201,168,76,.08)':'rgba(90,138,106,.08)';
-      h+=`<div style="background:${bgcor};border:1px solid ${p.nota<=2?'rgba(192,57,43,.2)':p.nota===3?'rgba(201,168,76,.2)':'rgba(90,138,106,.2)'};border-left:3px solid ${cor};border-radius:9px;padding:12px;margin-bottom:9px">
-        <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px;flex-wrap:wrap">
-          <span style="font-size:11px;font-weight:700;color:var(--dark)">${i+1}. ${p.item}</span>
-          <span style="background:${p.nota<=2?'rgba(192,57,43,.12)':p.nota===3?'rgba(201,168,76,.12)':'rgba(90,138,106,.12)'};color:${cor};border-radius:18px;padding:2px 8px;font-size:10px;font-weight:700">${p.nota}/5 · ${p.prazo}</span>
-        </div>
-        <div style="font-size:12px;color:var(--dark);margin-bottom:5px;line-height:1.5">📌 ${p.acao}</div>
-        <div style="font-size:11px;color:var(--blue);margin-bottom:4px">📚 ${p.recurso}</div>
-        <div style="font-size:11px;color:var(--mid);padding-top:5px;border-top:1px solid rgba(0,0,0,.06)">📈 ${p.ind}</div>
-      </div>`;
-    });
-    h+=`</div>`;
-  }
-
-  if(pdi.plano){
-    h+=`<div style="margin-bottom:12px">
-    <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">🗓️ Plano 30 · 60 · 90 dias</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px">
-    ${[
-      {d:'30 dias',k:'d30',c:'var(--green)',bg:'rgba(90,138,106,.08)',bc:'rgba(90,138,106,.2)'},
-      {d:'60 dias',k:'d60',c:'var(--gold-dark)',bg:'rgba(201,168,76,.08)',bc:'rgba(201,168,76,.2)'},
-      {d:'90 dias',k:'d90',c:'var(--blue)',bg:'rgba(90,122,154,.08)',bc:'rgba(90,122,154,.2)'}
-    ].map(m=>{
-      const p=pdi.plano[m.k];if(!p)return'';
-      return`<div style="background:${m.bg};border:1px solid ${m.bc};border-radius:8px;padding:10px">
-        <div style="font-size:9px;font-weight:700;color:${m.c};margin-bottom:5px;text-transform:uppercase">${m.d} · ${p.foco}</div>
-        ${p.acoes.map(a=>`<div style="font-size:10px;color:var(--dark);margin-bottom:3px;line-height:1.4">• ${a}</div>`).join('')}
-        <div style="font-size:10px;color:var(--mid);margin-top:5px;padding-top:5px;border-top:1px solid ${m.bc};font-style:italic">${p.entrega}</div>
-      </div>`;
-    }).join('')}
-    </div></div>`;
-  }
-
-  if(pdi.acordo){
-    h+=`<div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:12px;margin-bottom:12px">
-    <div style="font-size:10px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">🤝 Acordo de Crescimento</div>
-    <div style="font-size:12px;color:var(--dark);line-height:1.6">${pdi.acordo}</div>
-    </div>`;
-  }
-
-  if(pdi.msg){
-    h+=`<div style="background:linear-gradient(135deg,var(--dark),var(--dark2));border-radius:10px;padding:16px;text-align:center">
-    <div style="font-size:20px;margin-bottom:7px">🌸</div>
-    <div style="font-size:12px;font-style:italic;color:var(--gold-light);line-height:1.7">"${pdi.msg}"</div>
-    </div>`;
-  }
-
+  const clf=getClf(pdi.pct||0);
+  const pctColor=(pdi.pct||0)>=80?'var(--green)':(pdi.pct||0)>=60?'var(--gold)':'var(--red)';
+  let h=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:13px;background:linear-gradient(135deg,${pctColor}18,${pctColor}08);border:1px solid ${pctColor}33;border-radius:11px"><div style="font-size:34px">${clf.e}</div><div><div style="font-size:10px;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.5px">${pdi.classificacao} · ${pdi.pct}%</div><div style="font-size:12px;font-style:italic;color:var(--dark);margin-top:2px">${pdi.perfil||''}</div></div></div>`;
+  h+=`<div style="background:var(--white);border:1px solid #EDE8E0;border-radius:10px;padding:14px;margin-bottom:12px"><div style="font-size:10px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">📊 Diagnóstico</div><div style="font-size:12px;line-height:1.7;color:var(--dark)">${pdi.diagnostico||''}</div></div>`;
+  if(pdi.fortes&&pdi.fortes.length){h+=`<div style="margin-bottom:12px"><div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">💪 Forças a Potencializar</div>${pdi.fortes.map(p=>`<div style="background:rgba(90,138,106,.08);border:1px solid rgba(90,138,106,.25);border-radius:8px;padding:8px 12px;font-size:12px;color:var(--dark);line-height:1.5;margin-bottom:5px">✨ ${p}</div>`).join('')}</div>`}
+  if(pdi.prioridades&&pdi.prioridades.length){h+=`<div style="margin-bottom:12px"><div style="font-size:10px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">🎯 Ações Prioritárias</div>`;pdi.prioridades.forEach((p,i)=>{const cor=p.nota<=2?'var(--red)':p.nota===3?'var(--gold)':'var(--green)';const bg=p.nota<=2?'rgba(192,57,43,.08)':p.nota===3?'rgba(201,168,76,.08)':'rgba(90,138,106,.08)';h+=`<div style="background:${bg};border:1px solid ${p.nota<=2?'rgba(192,57,43,.2)':p.nota===3?'rgba(201,168,76,.2)':'rgba(90,138,106,.2)'};border-left:3px solid ${cor};border-radius:9px;padding:12px;margin-bottom:9px"><div style="display:flex;align-items:center;gap:6px;margin-bottom:7px;flex-wrap:wrap"><span style="font-size:11px;font-weight:700;color:var(--dark)">${i+1}. ${p.item}</span><span style="background:${p.nota<=2?'rgba(192,57,43,.12)':p.nota===3?'rgba(201,168,76,.12)':'rgba(90,138,106,.12)'};color:${cor};border-radius:18px;padding:2px 8px;font-size:10px;font-weight:700">${p.nota}/5 · ${p.prazo}</span></div><div style="font-size:12px;color:var(--dark);margin-bottom:5px;line-height:1.5">📌 ${p.acao}</div><div style="font-size:11px;color:var(--blue);margin-bottom:4px">📚 ${p.recurso}</div><div style="font-size:11px;color:var(--mid);padding-top:5px;border-top:1px solid rgba(0,0,0,.06)">📈 ${p.ind}</div></div>`});h+=`</div>`}
+  if(pdi.plano){h+=`<div style="margin-bottom:12px"><div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">🗓️ Plano 30 · 60 · 90 dias</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px">${[{d:'30 dias',k:'d30',c:'var(--green)',bg:'rgba(90,138,106,.08)',bc:'rgba(90,138,106,.2)'},{d:'60 dias',k:'d60',c:'var(--gold-dark)',bg:'rgba(201,168,76,.08)',bc:'rgba(201,168,76,.2)'},{d:'90 dias',k:'d90',c:'var(--blue)',bg:'rgba(90,122,154,.08)',bc:'rgba(90,122,154,.2)'}].map(m=>{const p=pdi.plano[m.k];if(!p)return'';return`<div style="background:${m.bg};border:1px solid ${m.bc};border-radius:8px;padding:10px"><div style="font-size:9px;font-weight:700;color:${m.c};margin-bottom:5px;text-transform:uppercase">${m.d} · ${p.foco}</div>${p.acoes.map(a=>`<div style="font-size:10px;color:var(--dark);margin-bottom:3px;line-height:1.4">• ${a}</div>`).join('')}<div style="font-size:10px;color:var(--mid);margin-top:5px;padding-top:5px;border-top:1px solid ${m.bc};font-style:italic">${p.entrega}</div></div>`}).join('')}</div></div>`}
+  if(pdi.acordo)h+=`<div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:12px;margin-bottom:12px"><div style="font-size:10px;font-weight:700;color:var(--gold-dark);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">🤝 Acordo de Crescimento</div><div style="font-size:12px;color:var(--dark);line-height:1.6">${pdi.acordo}</div></div>`;
+  if(pdi.msg)h+=`<div style="background:linear-gradient(135deg,var(--dark),var(--dark2));border-radius:10px;padding:16px;text-align:center"><div style="font-size:20px;margin-bottom:7px">🌸</div><div style="font-size:12px;font-style:italic;color:var(--gold-light);line-height:1.7">"${pdi.msg}"</div></div>`;
   return h;
 }
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+
+/* ===== AVALIAÇÃO LÍDER ===== */
+const FCAT_LIDER={'🎯 RESULTADOS E METAS':['Atingimento da meta da loja','Gestão do ticket médio da equipe','Acompanhamento de indicadores diários','Planejamento de ações para bater meta','Consistência e previsibilidade de resultados'],'👥 LIDERANÇA DE EQUIPE':['Engajamento e motivação da equipe','Gestão de conflitos e clima da loja','Desenvolvimento das vendedoras','Delegação e distribuição de tarefas','Feedback contínuo e construtivo','Exemplo e postura de liderança'],'🏪 GESTÃO DA LOJA':['Abertura e fechamento de acordo com processos','Organização, limpeza e visual da loja','Controle de estoque e reposição','Execução de campanhas e ações da marca','Cumprimento de normas e procedimentos'],'💬 COMUNICAÇÃO E RELACIONAMENTO':['Comunicação clara com a equipe','Alinhamento com a gestora regional','Atendimento a clientes estratégicos','Resolução de problemas e reclamações','Transparência e honestidade'],'🌱 DESENVOLVIMENTO PESSOAL':['Autoconhecimento e autocrítica','Abertura a feedbacks da liderança','Gestão emocional e resiliência','Visão de negócio e dono da loja','Proatividade e iniciativa estratégica']};
+const BANCO_ACOES_LIDER={'Atingimento da meta da loja':{acao:'Criar painel visual de acompanhamento diário. Reunião de 10 min com a equipe ao abrir: meta do dia, resultado ontem, foco do turno.',recurso:'Livro: Execução — Larry Bossidy & Ram Charan',ind:'Meta da loja atingida em ≥ 80% dos dias do mês'},'Engajamento e motivação da equipe':{acao:'Reconhecer publicamente 1 conquista de cada vendedora por semana.',recurso:'Livro: O Gerente Minuto — Ken Blanchard',ind:'Percepção positiva da equipe em pesquisa de clima'},'Desenvolvimento das vendedoras':{acao:'Fazer 1 observação de atendimento por semana com cada vendedora e dar feedback estruturado na hora.',recurso:'Metodologia: Feedforward — Marshall Goldsmith',ind:'Melhora mensurável nas avaliações das vendedoras'},'Feedback contínuo e construtivo':{acao:'Praticar o modelo SBI em todos os feedbacks. Dar pelo menos 1 feedback positivo e 1 de desenvolvimento por semana.',recurso:'Modelo: SBI Feedback — CCL',ind:'Feedbacks dados e registrados semanalmente'},'Exemplo e postura de liderança':{acao:'Revisitar diariamente: estou sendo o exemplo que quero ver na minha equipe?',recurso:'Livro: As 21 Irrefutáveis Leis da Liderança — John Maxwell',ind:'Equipe espelha comportamentos positivos da líder'},'Comunicação clara com a equipe':{acao:'Fazer briefing de equipe diário (5-10 min).',recurso:'Livro: Comunicação — Brian Tracy',ind:'Equipe tem clareza sobre metas e prioridades'},'Gestão emocional e resiliência':{acao:'Criar ritual de "reset" em dias difíceis. Nomear o que sente antes de reagir.',recurso:'Livro: Inteligência Emocional — Daniel Goleman',ind:'Manutenção de liderança equilibrada mesmo sob pressão'},'Visão de negócio e dono da loja':{acao:'Analisar mensalmente os resultados com olhar de dono.',recurso:'Livro: A Mentalidade de Dono — Ram Charan',ind:'Propõe pelo menos 1 melhoria estratégica por mês'}};
+
+let S_lider={loja:'Shopping Mooca',stars:{},comm:{}};
+
+function selLiderLoja(el,l){document.querySelectorAll('#liderLojaTabs .loja-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');S_lider.loja=l;document.getElementById('fLL').value=l}
+
+function buildLiderCrit(){
+  S_lider.stars={};S_lider.comm={};
+  const c=document.getElementById('liderCriterios');c.innerHTML='';
+  Object.entries(FCAT_LIDER).forEach(([cat,items])=>{
+    const h=document.createElement('div');h.className='cat-header';h.textContent=cat;c.appendChild(h);
+    items.forEach(item=>{
+      const k=cat+'|'+item;S_lider.stars[k]=0;S_lider.comm[k]='';
+      const row=document.createElement('div');row.className='star-row';
+      const wrap=document.createElement('div');wrap.style.cssText='display:flex;gap:3px;align-items:center';
+      const lbl=document.createElement('span');lbl.className='star-score-lbl';lbl.id='lsl'+encodeKey(k);lbl.textContent='0';
+      [1,2,3,4,5].forEach(n=>{const b=document.createElement('button');b.className='star-btn';b.textContent='★';b.onclick=()=>setStarLider(k,n);wrap.appendChild(b)});
+      wrap.appendChild(lbl);
+      const info=document.createElement('div');info.className='star-info';
+      info.innerHTML=`<div class="star-label-text">${item}</div>`;
+      const ta=document.createElement('textarea');ta.className='star-comment-input';ta.placeholder='Comentário opcional...';ta.oninput=()=>{S_lider.comm[k]=ta.value};
+      info.appendChild(ta);row.appendChild(info);row.appendChild(wrap);c.appendChild(row);
+    });
+  });updLiderScore();
+}
+function setStarLider(k,n){
+  S_lider.stars[k]=n;const ek=encodeKey(k);const lbl=document.getElementById('lsl'+ek);if(lbl)lbl.textContent=n;
+  const row=lbl&&lbl.closest('.star-row');if(row){row.querySelectorAll('.star-btn').forEach((b,i)=>{b.style.color=i<n?'var(--gold)':'#DDD5CA'})}
+  updLiderScore();
+}
+function updLiderScore(){
+  const vals=Object.values(S_lider.stars);const t=vals.reduce((a,b)=>a+b,0);const m=vals.length*5;const pct=m>0?Math.round((t/m)*100):0;
+  document.getElementById('liderBar').style.width=pct+'%';document.getElementById('liderScore').textContent=t;
+  const cl=getClf(pct);document.getElementById('liderClassifEl').innerHTML=`<span class="classif-badge ${cl.c}">${cl.e} ${cl.l}</span>`;
+}
+
+function gerarPDILider(){
+  const nome=document.getElementById('fLN').value||'o(a) líder';
+  const btn=document.getElementById('btnGerarPDILider');
+  btn.disabled=true;btn.textContent='⏳ Gerando...';
+  document.getElementById('liderPdiLoadingBadge').textContent='analisando...';
+  document.getElementById('liderPdiContent').innerHTML='<div style="text-align:center;padding:36px;color:var(--mid)"><div style="font-size:32px;margin-bottom:12px">👑</div><div style="font-size:13px">Criando PDI para '+nome+'...</div></div>';
+
+  const starsSnap={...S_lider.stars};
+  let totalPontos=0,totalCrit=0;
+  const fortes=[],criticos=[],medios=[];
+  Object.entries(FCAT_LIDER).forEach(([cat,items])=>{
+    items.forEach(item=>{
+      const n=starsSnap[cat+'|'+item]||0;totalPontos+=n;totalCrit++;
+      if(n>=4)fortes.push({cat,item,nota:n});else if(n>0&&n<=2)criticos.push({cat,item,nota:n});else if(n===3)medios.push({cat,item,nota:n});
+    });
+  });
+  const pct=Math.round((totalPontos/(totalCrit*5))*100);const clf=getClf(pct);
+  const candidatos=[...criticos,...medios].slice(0,4);
+  const prioridades=candidatos.map(c=>{const b=BANCO_ACOES_LIDER[c.item]||{acao:`Desenvolver ${c.item.toLowerCase()} com prática intencional.`,recurso:'Reflexão semanal com a gestora regional',ind:'Melhora visível na próxima avaliação'};return{item:c.item,cat:c.cat,nota:c.nota,acao:b.acao,recurso:b.recurso,ind:b.ind,prazo:c.nota<=2?'30 dias':c.nota===3?'60 dias':'90 dias'}});
+  const topFortes=fortes.sort((a,b)=>b.nota-a.nota).slice(0,3).map(f=>`Destaque em ${f.item}`);
+  if(topFortes.length===0)topFortes.push('Comprometimento com o papel de líder','Cuidado com a equipe e os resultados','Disposição para crescer');
+  const plano={d30:{foco:'Diagnóstico e primeiras ações',acoes:['Alinhar expectativas com a gestora regional','Implementar 1 ritual de liderança diário','Iniciar as ações prioritárias'],entrega:'Primeiros rituais instalados e equipe percebendo mudança'},d60:{foco:'Desenvolvimento e consistência',acoes:['Executar plano com consistência','Fazer observação de atendimento semanal','Check-in quinzenal com a gestora'],entrega:'Melhora visível nos indicadores e clima da equipe'},d90:{foco:'Consolidação e nova liderança',acoes:['Revisar PDI com a gestora','Identificar próximo nível a desenvolver','Começar a desenvolver uma sucessora'],entrega:'Liderança consolidada e equipe em desenvolvimento'}};
+  const msgs={Excelente:`${nome}, você chegou a um nível que exige muito de quem lidera. Continue inspirando e crescendo. 👑`,
+    'Muito Bom':`${nome}, sua liderança já deixa marca. O melhor líder é aquele que forma outros líderes. Você está nesse caminho. ✨`,
+    'Bom':`${nome}, liderar é uma das coisas mais difíceis e bonitas que existem. Este PDI é um convite para ir mais longe. 💛`,
+    'Precisa Melhorar':`${nome}, toda grande líder já foi uma líder em construção. A Avatim acredita no seu potencial. 🤝`,
+    'Crítico':`${nome}, este é um momento de escolha. A Avatim oferece o suporte — cabe a você dar o primeiro passo. 💪`};
+
+  window._pdiObjLider={classificacao:clf.l,pct,diagnostico:`${nome} está sendo avaliada como líder. Classificação: ${clf.l} (${pct}%). O PDI a seguir foca nos pontos de maior impacto para o desenvolvimento da liderança.`,perfil:`Líder · ${clf.l}`,fortes:topFortes,prioridades,plano,acordo:`A gestora se compromete a reuniões de acompanhamento. ${nome} se compromete a executar as ações deste PDI.`,msg:msgs[clf.l]||msgs['Bom']};
+
+  document.getElementById('liderPdiContent').innerHTML=renderPDI(window._pdiObjLider);
+  document.getElementById('liderPdiLoadingBadge').textContent='✅ pronto!';
+  btn.textContent='🔄 Gerar novamente';btn.disabled=false;showToast('👑 PDI de Liderança gerado!');
+}
+
+function submitLider(){
+  const nome=document.getElementById('fLN').value,loja=document.getElementById('fLL').value,data=document.getElementById('fLD').value;
+  if(!nome||!loja||!data){showToast('⚠️ Preencha nome, loja e data');return}
+  const starsSnap={...S_lider.stars};const commSnap={...S_lider.comm};
+  const domStarsL={};
+  document.querySelectorAll('#liderCriterios .star-row').forEach(row=>{
+    const lbl=row.querySelector('.star-score-lbl');const labelEl=row.querySelector('.star-label-text');if(!labelEl||!lbl)return;
+    const nota=parseInt(lbl.textContent)||0;const item=labelEl.textContent.trim();
+    let el=row.previousElementSibling;while(el&&!el.classList.contains('cat-header'))el=el.previousElementSibling;
+    if(el){const cat=el.textContent.trim();domStarsL[cat+'|'+item]=nota;}
+  });
+  let t=0,cnt=0;const crit={};
+  Object.entries(FCAT_LIDER).forEach(([cat,items])=>{crit[cat]=[];items.forEach(item=>{const k=cat+'|'+item;const n=domStarsL[k]!==undefined?domStarsL[k]:(starsSnap[k]||0);const c=commSnap[k]||'';t+=n;cnt++;crit[cat].push({l:item,n,c})})});
+  const m=cnt*5,pct=Math.round((t/m)*100),cl=getClf(pct);
+  const aval={id:Date.now(),tipo:'lider',loja,data,nome,cargo:'Vendedor(a) Líder',tempo:document.getElementById('fLT').value,av:document.getElementById('fLA').value,periodo:document.getElementById('fLP').value,score:t,max:m,pct,clf:cl.l,crit,pm:{obj:document.getElementById('lPmObj').value,acao:document.getElementById('lPmAcao').value,prazo:document.getElementById('lPmPrazo').value,status:document.getElementById('lPmStatus').value},pos:document.getElementById('lFFpos').value,dev:document.getElementById('lFFdev').value,msg:document.getElementById('lFFmsg').value,sAv:sigD.sigLAv,sFn:sigD.sigLFn,acordos:document.getElementById('lAcordos').value,sigAcAv:sigD.sigLAcAv,sigAcFn:sigD.sigLAcFn,pdi:window._pdiObjLider?JSON.parse(JSON.stringify(window._pdiObjLider)):null};
+  S.avals.unshift(aval);sv();resetLider();showPage('historico');renderDash();renderHist();renderRank();showToast('👑 Avaliação do Líder salva! '+pct+'% · '+t+'/'+m+' pts');
+}
+function resetLider(){
+  ['fLN','fLT','fLP','lPmObj','lPmAcao','lPmPrazo','lFFpos','lFFdev','lFFmsg','lAcordos'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''});
+  document.getElementById('lPmStatus').value='';buildLiderCrit();clearSig('sigLAv');clearSig('sigLFn');clearSig('sigLAcAv');clearSig('sigLAcFn');
+  window._pdiObjLider=null;document.getElementById('liderPdiContent').innerHTML='Clique em "Gerar PDI" para criar um plano personalizado de liderança.';document.getElementById('liderPdiLoadingBadge').textContent='';document.getElementById('btnGerarPDILider').textContent='✨ Gerar PDI';document.getElementById('btnGerarPDILider').disabled=false;
+}
+
+/* ===== FEEDBACK ===== */
+let S_fb={loja:'Shopping Mooca'};
+function selFbLoja(el,l){document.querySelectorAll('#fbLojaTabs .loja-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');S_fb.loja=l;document.getElementById('fbLoja').value=l}
+const TIPOS_FB={alinhamento:'🎯 Alinhamento',reconhecimento:'🌟 Reconhecimento',corretivo:'⚠️ Feedback Corretivo',desenvolvimento:'🌱 Desenvolvimento',retorno:'🔄 Retorno de Avaliação',admissao:'🆕 Integração',desligamento:'🔴 Pré-desligamento',outro:'💬 Outro'};
+const RECEPCAO_FB={muito_bem:'😊 Muito bem — aberta e receptiva',bem:'🙂 Bem — aceitou com tranquilidade',neutro:'😐 Neutra — pouco expressiva',resistencia:'😟 Com resistência — defensiva',mal:'😠 Mal — discordou ou ficou chateada','':'—'};
+
+function submitFeedback(){
+  const nome=document.getElementById('fbNome').value,loja=document.getElementById('fbLoja').value,data=document.getElementById('fbData').value;
+  if(!nome||!loja||!data){showToast('⚠️ Preencha nome, loja e data');return}
+  const tipo=document.getElementById('fbTipo').value;
+  const fb={id:Date.now(),tipo:'feedback',loja,data,nome,cargo:document.getElementById('fbCargo').value,av:document.getElementById('fbAv').value,tipoConversa:tipo,tipoLabel:TIPOS_FB[tipo]||tipo,contexto:document.getElementById('fbContexto').value,situacao:document.getElementById('fbSituacao').value,comportamento:document.getElementById('fbComportamento').value,impacto:document.getElementById('fbImpacto').value,positivo:document.getElementById('fbPositivo').value,desenvolver:document.getElementById('fbDesenvolver').value,acordos:document.getElementById('fbAcordos').value,prazo:document.getElementById('fbPrazo').value,recepcao:document.getElementById('fbRecepcao').value,recepcaoLabel:RECEPCAO_FB[document.getElementById('fbRecepcao').value]||'—',obs:document.getElementById('fbObs').value,sAv:sigD.sigFbAv,sFn:sigD.sigFbFn,score:0,max:0,pct:0};
+  S.avals.unshift(fb);sv();resetFeedback();showPage('historico');renderDash();renderHist();renderRank();showToast('💬 Feedback salvo!');
+}
+function resetFeedback(){
+  ['fbNome','fbCargo','fbPrazo','fbContexto','fbSituacao','fbComportamento','fbImpacto','fbPositivo','fbDesenvolver','fbAcordos','fbObs'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=''});
+  document.getElementById('fbRecepcao').value='';document.getElementById('fbTipo').value='alinhamento';clearSig('sigFbAv');clearSig('sigFbFn');
+}
 </script>
 </body>
 </html>
